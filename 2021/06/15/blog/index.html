@@ -290,7 +290,7 @@
     
     
       <span class="dot"></span>
-      <span>692 字</span>
+      <span>694 字</span>
     
   </div>
   
@@ -358,7 +358,7 @@
 <h3 id="修改配置"><a href="#修改配置" class="headerlink" title="修改配置"></a>修改配置</h3><p>修改站点配置文件 _config.yml</p>
 <pre class="highlight"><span class="line"><span class="comment"># Site</span></span><br><span class="line"><span class="attr">title:</span></span><br><span class="line"><span class="attr">subtitle:</span></span><br><span class="line"><span class="attr">description:</span></span><br><span class="line"><span class="attr">keywords:</span></span><br><span class="line"><span class="attr">author:</span></span><br><span class="line"><span class="attr">language:</span> <span class="string">zh-CN</span></span><br><span class="line"><span class="attr">timezone:</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Extensions</span></span><br><span class="line"><span class="comment">## Plugins: https://hexo.io/plugins/</span></span><br><span class="line"><span class="comment">## Themes: https://hexo.io/themes/</span></span><br><span class="line"><span class="attr">theme:</span> <span class="string">hexo-theme-Kaze</span></span><br></pre>
 
-<h3 id="新建文章"><a href="#新建文章" class="headerlink" title="新建文章"></a>新建文章</h3><pre class="highlight"><span class="line"><span class="comment"># [layout]：布局(post)</span></span><br><span class="line"><span class="comment"># &lt;title&gt;:标题&amp;文件名称</span></span><br><span class="line">$ hexo n [layout] &lt;title&gt;</span><br></pre>
+<h3 id="新建文章"><a href="#新建文章" class="headerlink" title="新建文章"></a>新建文章</h3><pre class="highlight"><span class="line"><span class="comment"># [layout]：布局(post)</span></span><br><span class="line"><span class="comment"># &lt;title&gt;:标题&amp;文件名称</span></span><br><span class="line">$ hexo new [layout] &lt;title&gt;</span><br></pre>
 
 <h3 id="网站托管"><a href="#网站托管" class="headerlink" title="网站托管"></a>网站托管</h3><p>GitHub Pages 或 Gitee Pages</p>
 <h3 id="建立仓库"><a href="#建立仓库" class="headerlink" title="建立仓库"></a>建立仓库</h3><p>申请一个账号，创建一个新的仓库，仓库名尽量和账号名一致，这样可以避免一些因为路径引发的问题。</p>
@@ -368,7 +368,7 @@
 <p>2.修改站点配置文件 _config.yml</p>
 <pre class="highlight"><span class="line"><span class="comment"># URL</span></span><br><span class="line"><span class="comment">## Set your site url here. For example, if you use GitHub Page, set url as &#x27;https://username.github.io/project&#x27;</span></span><br><span class="line"><span class="attr">url:</span> <span class="string">https://parischerryblossoms.github.io</span></span><br><span class="line"><span class="attr">permalink:</span> <span class="string">:year/:month/:day/:title/</span></span><br><span class="line"><span class="attr">permalink_defaults:</span></span><br><span class="line"><span class="attr">pretty_urls:</span></span><br><span class="line">  <span class="attr">trailing_index:</span> <span class="literal">true</span> <span class="comment"># Set to false to remove trailing &#x27;index.html&#x27; from permalinks</span></span><br><span class="line">  <span class="attr">trailing_html:</span> <span class="literal">true</span> <span class="comment"># Set to false to remove trailing &#x27;.html&#x27; from permalinks</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Deployment</span></span><br><span class="line"><span class="comment">## Docs: https://hexo.io/docs/one-command-deployment</span></span><br><span class="line"><span class="attr">deploy:</span></span><br><span class="line">  <span class="attr">type:</span> <span class="string">git</span></span><br><span class="line">  <span class="attr">repo:</span> <span class="string">https://github.com/ParisCherryBlossoms/ParisCherryBlossoms.github.io.git</span></span><br><span class="line">  <span class="attr">branch:</span> <span class="string">master</span></span><br></pre>
 
-<h3 id="上传仓库"><a href="#上传仓库" class="headerlink" title="上传仓库"></a>上传仓库</h3><pre class="highlight"><span class="line">$ hexo d</span><br></pre>
+<h3 id="上传仓库"><a href="#上传仓库" class="headerlink" title="上传仓库"></a>上传仓库</h3><pre class="highlight"><span class="line">$ hexo generate</span><br><span class="line">$ hexo deploy</span><br></pre>
 
 <h2 id="官方参考文档"><a href="#官方参考文档" class="headerlink" title="官方参考文档"></a>官方参考文档</h2><p><a target="_blank" rel="noopener" href="https://hexo.io/zh-cn/docs/">Hexo文档</a><br><a target="_blank" rel="noopener" href="https://hexo.io/zh-cn/api/">Hexo API</a><br><a target="_blank" rel="noopener" href="https://demo.theme-kaze.top/">Kaze文档</a></p>
 
@@ -402,20 +402,6 @@
 <div class="nav">
   
   
-    <div class="nav-item-next">
-      <a 
-        href="/2018/04/27/hello-world/" 
-        class="nav-link">
-        <div>
-          <div class="nav-label">下一篇</div>
-          
-            <div class="nav-title">Hello World </div>
-          
-        </div>
-        <i class="iconfont icon-right nav-next-icon"></i>
-      </a>
-    </div>
-  
 </div>
 
 <div 
@@ -444,19 +430,19 @@
   <a 
     class="author-posts-count" 
     href="/archives">
-    <span>2</span>
+    <span>1</span>
     <span>文章</span>
   </a>
   <a 
     class="author-categories-count" 
     href="/categories">
-    <span>2</span>
+    <span>1</span>
     <span>分类</span>
   </a>
   <a 
     class="author-tags-count" 
     href="/tags">
-    <span>3</span>
+    <span>2</span>
     <span>标签</span>
   </a>
 </div>
@@ -529,13 +515,6 @@
         </div>
       </a>
     
-      <a href="/categories/hexo/">
-        <div class="categories-list-item">
-          hexo
-          <span class="categories-list-item-badge">1</span>
-        </div>
-      </a>
-    
   </div>
 </div>
   </article>
@@ -549,12 +528,6 @@
     </i>热门标签
   </div>
   <div class="tags-list">
-    
-      <a 
-        href="/tags/linux/" 
-        title="linux">
-        <div class="tags-list-item">linux</div>
-      </a>
     
       <a 
         href="/tags/kaze/" 
@@ -603,11 +576,6 @@
       <div class="recent-posts-item">
         <div class="recent-posts-item-title">2021-06-15</div>
         <a href="/2021/06/15/blog/"><div class="recent-posts-item-content">Hexo+Kaze 搭建静态博客网站</div></a>
-      </div>
-    
-      <div class="recent-posts-item">
-        <div class="recent-posts-item-title">2018-04-27</div>
-        <a href="/2018/04/27/hello-world/"><div class="recent-posts-item-content">Hello World</div></a>
       </div>
     
   </div>
