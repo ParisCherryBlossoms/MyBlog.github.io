@@ -1,0 +1,904 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+  <meta charset="UTF-8">
+  <meta 
+    name="viewport"
+    content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+  <meta 
+    http-equiv="X-UA-Compatible" 
+    content="ie=edge">
+  <meta 
+    name="theme-color" 
+    content="#fff" 
+    id="theme-color">
+  <meta 
+    name="description" 
+    content="码农充电站">
+  <link 
+    rel="icon" 
+    href="/img/logo.jpg">
+  <title>第1课  李さんは中国人です</title>
+  
+    
+      <meta 
+        property="og:title" 
+        content="第1课  李さんは中国人です">
+    
+    
+      <meta 
+        property="og:url" 
+        content="https://parischerryblossoms.github.io/2021/07/03/jp-elementaryBook-1/index.html">
+    
+    
+      <meta 
+        property="og:img" 
+        content="/img/logo.jpg">
+    
+    
+    
+      <meta 
+        property="og:type" 
+        content="article">
+      <meta 
+        property="og:article:published_time" 
+        content="2021-07-03">
+      <meta 
+        property="og:article:modified_time" 
+        content="2021-07-03">
+      <meta 
+        property="og:article:author" 
+        content="夜楼">
+      
+        
+          <meta 
+            property="og:article:tag" 
+            content="jp-study">
+        
+      
+    
+  
+  <script>
+    function loadScript(url, cb) {
+      var script = document.createElement('script');
+      script.src = url;
+      if (cb) script.onload = cb;
+      script.async = true;
+      document.body.appendChild(script);
+    }
+    function loadCSS(href, data, attr) {
+      var sheet = document.createElement('link');
+      sheet.ref = 'stylesheet';
+      sheet.href = href;
+      sheet.dataset[data] = attr;
+      document.head.appendChild(sheet);
+    }
+    function changeCSS(cssFile, data, attr) {
+      var oldlink = document.querySelector(data);
+      var newlink = document.createElement("link");
+      newlink.setAttribute("rel", "stylesheet");
+      newlink.setAttribute("href", cssFile);
+      newlink.dataset.prism = attr;
+      document.head.replaceChild(newlink, oldlink);
+    }
+  </script>
+  
+    
+  
+  <script>
+    // control reverse button
+    var reverseDarkList = {
+      dark: 'light',
+      light: 'dark'
+    };
+    var themeColor = {
+      dark: '#1c1c1e',
+      light: '#fff'
+    }
+    // get the data of css prefers-color-scheme
+    var getCssMediaQuery = function() {
+      return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+    };
+    // reverse current darkmode setting function
+    var reverseDarkModeSetting = function() {
+      var setting = localStorage.getItem('user-color-scheme');
+      if(reverseDarkList[setting]) {
+        setting = reverseDarkList[setting];
+      } else if(setting === null) {
+        setting = reverseDarkList[getCssMediaQuery()];
+      } else {
+        return;
+      }
+      localStorage.setItem('user-color-scheme', setting);
+      return setting;
+    };
+    // apply current darkmode setting
+  </script>
+  
+    <script>
+      var setDarkmode = function(mode) {
+      var setting = mode || localStorage.getItem('user-color-scheme');
+      if(setting === getCssMediaQuery()) {
+        document.documentElement.removeAttribute('data-user-color-scheme');
+        localStorage.removeItem('user-color-scheme');
+        document.getElementById('theme-color').content = themeColor[setting];
+        document.getElementById('theme-color').dataset.mode = setting;
+      } else if(reverseDarkList[setting]) {
+        document.documentElement.setAttribute('data-user-color-scheme', setting);
+        document.getElementById('theme-color').content = themeColor[setting];
+        document.getElementById('theme-color').dataset.mode = setting;
+      } else {
+        document.documentElement.removeAttribute('data-user-color-scheme');
+        localStorage.removeItem('user-color-scheme');
+        document.getElementById('theme-color').content = themeColor[getCssMediaQuery()];
+        document.getElementById('theme-color').dataset.mode = getCssMediaQuery();
+      }
+    };
+    setDarkmode();
+    </script>
+  
+  
+  <link rel="preload" href="//at.alicdn.com/t/font_1946621_i1kgafibvw.css" as="style" >
+  <link rel="preload" href="//at.alicdn.com/t/font_1952792_89b4ac4k4up.css" as="style" >
+  
+  
+    <link rel="preload" href="/js/lib/lightbox/baguetteBox.min.js" as="script">
+    <link rel="preload" href="/js/lib/lightbox/baguetteBox.min.css" as="style" >
+  
+  
+    <link rel="preload" href="/js/lib/lozad.min.js" as="script">
+  
+  
+  
+  
+  
+  
+  
+  <link rel="stylesheet" href="/css/main.css">
+  
+  <link rel="stylesheet" href="//at.alicdn.com/t/font_1946621_i1kgafibvw.css">
+    <link rel="stylesheet" href="/iconfont/iconfont.css">
+  
+  <link rel="stylesheet" href="//at.alicdn.com/t/font_1952792_89b4ac4k4up.css">
+  
+    <link rel="stylesheet" href="/js/lib/lightbox/baguetteBox.min.css">
+  
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+  <body>
+    <div class="wrapper">
+       
+      <nav class="navbar">
+  <div class="navbar-logo">
+    <span class="navbar-logo-main">
+      
+        <img 
+          class="navbar-logo-img" 
+          src="/img/logo.jpg" 
+          alt="blog logo">
+      
+      <span class="navbar-logo-dsc">码农充电站</span>
+    </span>
+  </div>
+  <div class="navbar-menu">
+    
+      <a 
+        href="/" 
+        class="navbar-menu-item">
+        
+          首页
+        
+      </a>
+    
+      <a 
+        href="/archives" 
+        class="navbar-menu-item">
+        
+          归档
+        
+      </a>
+    
+      <a 
+        href="/tags" 
+        class="navbar-menu-item">
+        
+          标签
+        
+      </a>
+    
+      <a 
+        href="/categories" 
+        class="navbar-menu-item">
+        
+          分类
+        
+      </a>
+    
+      <a 
+        href="/about" 
+        class="navbar-menu-item">
+        
+          关于
+        
+      </a>
+    
+      <a 
+        href="/links" 
+        class="navbar-menu-item">
+        
+          友链
+        
+      </a>
+    
+    <a 
+      class="navbar-menu-item darknavbar" 
+      id="dark">
+      <i class="iconfont icon-weather"></i>
+    </a>
+    <a 
+      class="navbar-menu-item searchnavbar" 
+      id="search">
+      <i 
+        class="iconfont icon-search" 
+        style="font-size: 1.2rem; font-weight: 400;">
+      </i>
+    </a>
+  </div>
+</nav> 
+      
+      <div 
+        id="local-search" 
+        style="display: none">
+        <input
+          class="navbar-menu-item"
+          id="search-input"
+          placeholder="请输入搜索内容..." />
+        <div id="search-content"></div>
+      </div>
+      
+      <div class="section-wrap">
+        <div class="container">
+          <div class="columns">
+            <main class="main-column">
+<article class="card card-content">
+  <header>
+    <h1 class="post-title">
+      第1课  李さんは中国人です
+    </h1>
+  </header>
+  <div class="post-meta post-show-meta">
+    <time datetime="2021-07-03T01:41:21.000Z">
+      <i 
+        class="iconfont icon-calendar" 
+        style="margin-right: 2px;">
+      </i>
+      <span>2021-07-03</span>
+    </time>
+    
+      <span class="dot"></span>
+      
+        <a 
+          href="/categories/%E6%96%B0%E7%89%88%E6%A0%87%E5%87%86%E6%97%A5%E6%9C%AC%E8%AF%AD%E5%88%9D%E7%BA%A7/" 
+          class="post-meta-link">
+          新版标准日本语初级
+        </a>
+      
+    
+    
+      <span class="dot"></span>
+      <span>1.6k 字</span>
+    
+  </div>
+  
+    <div 
+      class="post-meta post-show-meta" 
+      style="margin-top: -10px;">
+      <div style="display: flex; align-items: center;">
+        <i 
+          class="iconfont icon-biaoqian" 
+          style="margin-right: 2px; font-size: 1.15rem;">
+        </i>
+        
+          
+          <a 
+            href="/tags/jp-study/" 
+            class="post-meta-link">
+            jp-study
+          </a>
+        
+      </div>
+    </div>
+  
+  </header>
+  <div 
+    id="section" 
+    class="post-content">
+    <h2 id="基本课文"><a href="#基本课文" class="headerlink" title="基本课文"></a>基本课文</h2><ol>
+<li>李さんは中国人です。</li>
+<li>森さんは学生ではありまさん。</li>
+<li>林さんは日本人ですか。</li>
+<li>李さんはＪＣ企画の社員です。</li>
+</ol>
+<p>A<br>甲：わたしは李です。小野さんですか。<br>乙：はい、そうです。小野です。</p>
+<p>B<br>甲：森さんは学生ですか。<br>乙：いいえ、学生ではありまさん。会社員です。</p>
+<p>C<br>甲：吉田さんですか。<br>乙：いいえ、ちがいます。森です。</p>
+<p>D<br>甲：李さんはＪＣ企画の社員ですか。<br>乙：はい、そうです。</p>
+<h2 id="应用课文"><a href="#应用课文" class="headerlink" title="应用课文"></a>应用课文</h2><p>出迎え<br>（小李朝牌子的方向走去）<br>李：ＪＣ企画の小野さんですか。<br>小野：はい、小野です。李秀麗さんですか。<br>李：はい、李秀麗です。はじめまして。どうぞよろしくお願いします。<br>小野：はじめまして、小野緑です。<br>（森在一旁插话）<br>森：李さん、こんにちは。<br>李：吉田さんですか。<br>森：いいえ、わたしは吉田じゃありまさん。森です。<br>李：あっ、もりさんですか。どうもすみまさん。<br>森：いいえ。どうぞよろしく。<br>李：李秀麗です。くちらこそ、よろしくお願いします。</p>
+<h2 id="语法解释"><a href="#语法解释" class="headerlink" title="语法解释"></a>语法解释</h2><h3 id="1-「名」は「名」です"><a href="#1-「名」は「名」です" class="headerlink" title="1. 「名」は「名」です"></a>1. 「名」は「名」です</h3><p>&emsp; &emsp;相当于汉语的“<del>是</del>”。“～は”是主语部分，“～です”是谓语部分。助词“は”用于提示主题，读作“わ”。</p>
+<h3 id="2-「名」は「名」ではありまさん"><a href="#2-「名」は「名」ではありまさん" class="headerlink" title="2. 「名」は「名」ではありまさん"></a>2. 「名」は「名」ではありまさん</h3><p>&emsp; &emsp;相当于汉语的“<del>不是</del>”。“ではありまさん”的“では”在口语中有时会发成“じゃ”。</p>
+<h3 id="3-疑问句及应答"><a href="#3-疑问句及应答" class="headerlink" title="3. 疑问句及应答"></a>3. 疑问句及应答</h3><h4 id="1-「名」は「名」ですか"><a href="#1-「名」は「名」ですか" class="headerlink" title="(1) 「名」は「名」ですか"></a>(1) 「名」は「名」ですか</h4><p>&emsp; &emsp;相当于汉语的“<del>是</del>吗？”。助词“か”接在句尾表示疑问。日语的问句在句尾不使用“？”。回答时用“はい”或“いいえ”。</p>
+<h4 id="2-应答"><a href="#2-应答" class="headerlink" title="(2) 应答"></a>(2) 应答</h4><p>&emsp;&emsp;回答疑问句的时候，可以只用“はい”“いいえ”，也可以在“はい”之后加上“そうです”，在“いいえ”之后加上“ちがいます”，即成“はい、そうです”“いいえ、ちがいます”。不知道时用“分かりまさん（不知道）”。</p>
+<h3 id="4-「名」の「名」【从属机构、国家】【属性】"><a href="#4-「名」の「名」【从属机构、国家】【属性】" class="headerlink" title="4. 「名」の「名」【从属机构、国家】【属性】"></a>4. 「名」の「名」【从属机构、国家】【属性】</h3><p>&emsp; &emsp;助词“の”连接名词和名词，表示前面的名词是后面名词从属的机构、国家或属性。</p>
+<div class="post-note note-warning"><p>&emsp; &emsp;<em><strong>注意：</strong></em><br>&emsp; &emsp;在日语中，不论名词之间是什么关系，一般加“の”，如“わたしの父（我的父亲）”。汉语中说“我父亲”，而日语中不说“わたし父”。</p></div>
+
+<h2 id="表达及词语讲解"><a href="#表达及词语讲解" class="headerlink" title="表达及词语讲解"></a>表达及词语讲解</h2><h3 id="1-人称"><a href="#1-人称" class="headerlink" title="1. 人称"></a>1. 人称</h3><h4 id="1-“わたし”“あなた”“あの人”"><a href="#1-“わたし”“あなた”“あの人”" class="headerlink" title="(1) “わたし”“あなた”“あの人”"></a>(1) “わたし”“あなた”“あの人”</h4><p>&emsp; &emsp;日语中的人称代词，一般来说，第一人称是“わたし”，第二人称是“あなた”，第三人称是“あの人”。<br>&emsp; &emsp;要注意，在不知道对方的姓名而又必须打招呼的时候，才会使用第二人称“あなた”，因为用“あなた”来称呼对方，又是会显得很不礼貌。</p>
+<h4 id="2-～さん"><a href="#2-～さん" class="headerlink" title="(2) ～さん"></a>(2) ～さん</h4><p>&emsp; &emsp;称呼别人时，不分男女，都在其姓后加“さん”。“さん”只用于他人的姓名后，不用于自己的姓名后。<br>&emsp; &emsp;在(1)中也提到，一般不用“あなた”而用“姓+さん”来代替“”，如不用“小野さん、あなたは会社員ですか”而用“小野さんは会社員ですか”的形式。另外，有些情况下用职业、职务来称呼别人，如“課長”“店員さん”。<br>&emsp; &emsp;称呼小孩的时候，一般在其名字后加“ちゃん”。<br>&emsp; &emsp;另外，对于与自己年龄相当，或比自己年轻的男性，有时也用“君”称呼。</p>
+<div class="post-note note-warning"><p>&emsp; &emsp;<em><strong>注意：</strong></em><br>&emsp; &emsp;日语中的“先生”是“老师”的意思，不能用“先生”来代替“さん”。  </p></div>
+
+<h3 id="2-省略【第一、第二人称主语的省略】"><a href="#2-省略【第一、第二人称主语的省略】" class="headerlink" title="2. 省略【第一、第二人称主语的省略】"></a>2. 省略【第一、第二人称主语的省略】</h3><p>&emsp; &emsp;在日语里，一般省略通过场景或上下文可以明白的部分。如不省略，有时候听起来会不自然，或给人以不礼貌的印象。另外，省略的成分与汉语不尽相同，务须注意。<br>&emsp; &emsp;在会话中，多省略第一、第二人称的主语。</p>
+<h3 id="3-【叹词】"><a href="#3-【叹词】" class="headerlink" title="3. 【叹词】"></a>3. 【叹词】</h3><p>&emsp; &emsp;“あっ”是吃惊或者有所感触时发出的声音。<br>&emsp; &emsp;人们在紧急情况下一般情不自禁地发出“あっ”，自言自语时也用。</p>
+<h3 id="4-【寒暄语】"><a href="#4-【寒暄语】" class="headerlink" title="4. 【寒暄语】"></a>4. 【寒暄语】</h3><p>&emsp; &emsp;自我介绍时，在说完自己的姓名或者公司名称后，接着说“どうぞ、よろしくお願いします”，相当于汉语的“请多关照”。<br>&emsp; &emsp;有时也用省略的说法“どうぞよろしく”或“お願いします”，但“どうぞよろしくお願いします”是较礼貌的说法。将“お願いします”变成“お願いいたします”，更加礼貌。对方回答时一般先说“くちらこそ”。</p>
+<h3 id="5-“会社員”和“社員”"><a href="#5-“会社員”和“社員”" class="headerlink" title="5. “会社員”和“社員”"></a>5. “会社員”和“社員”</h3><p>&emsp; &emsp;“会社員”表示一种职业，意思是“公司职员”“在公司工作的人”。而“社員”仅表示具体属于某一个公司的人，一般在所属的公司较为明确的句子中使用，如：“ＪＣ企画の社員です（JC策划公司的职员）”。</p>
+<h2 id="国家-人-语言"><a href="#国家-人-语言" class="headerlink" title="国家/人/语言"></a>国家/人/语言</h2><table>
+<thead>
+<tr>
+<th>国    国名</th>
+<th>～人    ~人</th>
+<th>～語    ~语</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>中国    中国</td>
+<td>中国人    中国人</td>
+<td>中国語    汉语</td>
+</tr>
+<tr>
+<td>日本    日本</td>
+<td>日本人    日本人</td>
+<td>日本語    日语</td>
+</tr>
+<tr>
+<td>アメリカ    美国</td>
+<td>アメリカ人    美国人</td>
+<td>英語    英语</td>
+</tr>
+<tr>
+<td>イギリス    英国</td>
+<td>イギリス人    英国人</td>
+<td>英語    英语</td>
+</tr>
+<tr>
+<td>イタリア    意大利</td>
+<td>イタリア人    意大利人</td>
+<td>イタリア語    意大利语</td>
+</tr>
+<tr>
+<td>インド    印度</td>
+<td>インド人    印度人</td>
+<td>ヒンディー語    印地语</td>
+</tr>
+<tr>
+<td>オーストラリア    澳大利亚</td>
+<td>オーストラリア人    澳大利亚人</td>
+<td>英語    英语</td>
+</tr>
+<tr>
+<td>韓国    韩国</td>
+<td>韓国人    韩国人</td>
+<td>韓国語    韩语</td>
+</tr>
+<tr>
+<td>スペイン    西班牙</td>
+<td>スペイン人    西班牙人</td>
+<td>スペイン語    西班牙语</td>
+</tr>
+<tr>
+<td>タイ    泰国</td>
+<td>タイ人    泰国人</td>
+<td>タイ語    泰语</td>
+</tr>
+<tr>
+<td>ドイツ    德国</td>
+<td>ドイツ人    德国人</td>
+<td>ドイツ語    德语</td>
+</tr>
+<tr>
+<td>ブラジル    巴西</td>
+<td>ブラジル人    巴西人</td>
+<td>ポルトガル語    葡萄牙语</td>
+</tr>
+<tr>
+<td>フリンス    法国</td>
+<td>フリンス人    法国人</td>
+<td>フリンス語    法语</td>
+</tr>
+<tr>
+<td>ベトナム    越南</td>
+<td>ベトナム人    越南人</td>
+<td>ベトナム語    越南语</td>
+</tr>
+<tr>
+<td>メキシコ    墨西哥</td>
+<td>メキシコ人    墨西哥人</td>
+<td>スペイン語    西班牙语</td>
+</tr>
+<tr>
+<td>ロジア    俄罗斯</td>
+<td>ロジア人    俄罗斯人</td>
+<td>ロジア語    俄语</td>
+</tr>
+<tr>
+<td>外国    外国</td>
+<td>外国人    外国人</td>
+<td>外国語    外语</td>
+</tr>
+</tbody></table>
+<table>
+<thead>
+<tr>
+<th>大陸    大陆</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>アジア    亚洲</td>
+</tr>
+<tr>
+<td>ヨーロッパ    欧洲</td>
+</tr>
+<tr>
+<td>北アメリカ    北美洲</td>
+</tr>
+<tr>
+<td>オーストラリア    澳洲</td>
+</tr>
+<tr>
+<td>アフリカ    非洲</td>
+</tr>
+<tr>
+<td>南アメリカ    南美洲</td>
+</tr>
+</tbody></table>
+<h2 id="生词表"><a href="#生词表" class="headerlink" title="生词表"></a>生词表</h2><p>中国人「ちゅうごくじん」    【名】中国人<br>日本人「にほんじん」    【名】日本人<br>韓国人「かんこくじん」    【名】韩国人<br>アメリカ人「～じん」    【名】美国人<br>フラス人「～じん」    【名】法国人<br>学生「がくせい」    【名】（大）学生<br>先生「せんせい」    【名】老师<br>留学生「りゅうがくせい」    【名】留学生<br>教授「きょうじゅ」    【名】教授<br>社員「しゃいん」    【名】职员<br>会社員「かいしゃいん」    【名】公司职员<br>店員「てんいん」    【名】店员<br>研修生「けんしゅうせい」    【名】进修生<br>企業「ききょう」    【名】企业<br>大学「だいがく」    【名】大学<br>父「ちち」    【名】（我）父亲<br>課長「かちょう」    【名】科长<br>社長「しゃちょう」    【名】总经理，社长<br>出迎え「でむかえ」    【名】迎接<br>あの人「あのひと」    【名】那个人<br>わたし    【代】我<br>あなた    【代】你<br>どうも    【副】非常，很<br>はい    【叹】哎，是（应答）；是的<br>いいえ    【叹】不，不是<br>あっ    【叹】哎，哎呀<br>李「り」    【专】李<br>王「おう」    【专】王<br>張「ちょう」    【专】张<br>森「もり」    【专】森<br>林「はやし」    【专】林<br>小野「おの」    【专】小野<br>吉田「よしだ」    【专】吉田<br>田中「たなか」    【专】田中<br>中村「なかむら」    【专】中村<br>太郎「たろう」    【专】太郎<br>金「キム」    【专】金<br>デュポン    【专】迪蓬<br>スミス    【专】史密斯<br>ジョンソン    【专】约翰逊<br>中国「ちゅうごく」    【专】中国<br>東京大学「とうきょうだいがく」    【专】东京大学<br>北京大学「ペキンだいがく」    【专】北京大学<br>ＪＣ企画「ジェーシーきかく」    【专】JC策划公司<br>北京旅行社「ペキンりょこうしゃ」    【专】北京旅行社<br>日中商事「にっちゅうしょうじ」    【专】日中商社<br>こんにちは    你好<br>すみまさん     对不起；请问<br>どうぞ    请<br>よろしくお願いします「～おねがいします」    请多关照<br>はじめましで    初次见面<br>こちらこそ    我才要（请您~）<br>そうです    是（这样）<br>ちがいます    不是<br>分かりません「わかりません」    不知道<br>どうもすみません    实在对不起<br>～さん／～ちゃん／～君「くん」</p>
+
+  </div>
+  <div>
+    
+      <div 
+        class="post-note note-warning copyright" 
+        style="margin-top: 42px">
+        <p>
+          <span style="font-weight: bold;">作者：</span><a 
+            target="_blank" 
+            rel="nofollow noopener noreferrer" 
+            href="/about">
+            夜楼
+          </a>
+        </p>
+        <p>
+          <span style="font-weight: bold;">文章链接：</span><a 
+            target="_blank" 
+            rel="nofollow noopener noreferrer" 
+            href="https://parischerryblossoms.github.io/2021/07/03/jp-elementaryBook-1/">
+            https://parischerryblossoms.github.io/2021/07/03/jp-elementaryBook-1/
+          </a>
+        </p>
+        <p><span style="font-weight: bold;">版权声明：</span>本博客所有文章除特别声明外，均采用<a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">CC BY-NC-SA 4.0 协议</a>。转载请注明出处！</p>
+      </div>
+    
+  </div>
+</article>
+<div class="nav">
+  
+    <div class="nav-item-prev">
+      <a 
+        href="/2021/07/03/jp-word-%E5%90%8D/" 
+        class="nav-link">
+        <i class="iconfont icon-left nav-prev-icon"></i>
+        <div>
+          <div class="nav-label">上一篇</div>
+          
+            <div class="nav-title">生词表【名】 </div>
+          
+        </div>
+      </a>
+    </div>
+  
+  
+    <div class="nav-item-next">
+      <a 
+        href="/2021/06/28/nginx-ffmpeg/" 
+        class="nav-link">
+        <div>
+          <div class="nav-label">下一篇</div>
+          
+            <div class="nav-title">nginx+ffmpeg 搭建流媒体服务器（ubuntu） </div>
+          
+        </div>
+        <i class="iconfont icon-right nav-next-icon"></i>
+      </a>
+    </div>
+  
+</div>
+
+<div 
+  class="card card-content toc-card" 
+  id="mobiletoc">
+  <div class="toc-header">
+  <i 
+    class="iconfont icon-menu" 
+    style="padding-right: 2px;">
+  </i>目录
+</div>
+<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9F%BA%E6%9C%AC%E8%AF%BE%E6%96%87"><span class="toc-text">基本课文</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BA%94%E7%94%A8%E8%AF%BE%E6%96%87"><span class="toc-text">应用课文</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AF%AD%E6%B3%95%E8%A7%A3%E9%87%8A"><span class="toc-text">语法解释</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E3%80%8C%E5%90%8D%E3%80%8D%E3%81%AF%E3%80%8C%E5%90%8D%E3%80%8D%E3%81%A7%E3%81%99"><span class="toc-text">1. 「名」は「名」です</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E3%80%8C%E5%90%8D%E3%80%8D%E3%81%AF%E3%80%8C%E5%90%8D%E3%80%8D%E3%81%A7%E3%81%AF%E3%81%82%E3%82%8A%E3%81%BE%E3%81%95%E3%82%93"><span class="toc-text">2. 「名」は「名」ではありまさん</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-%E7%96%91%E9%97%AE%E5%8F%A5%E5%8F%8A%E5%BA%94%E7%AD%94"><span class="toc-text">3. 疑问句及应答</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-%E3%80%8C%E5%90%8D%E3%80%8D%E3%81%AF%E3%80%8C%E5%90%8D%E3%80%8D%E3%81%A7%E3%81%99%E3%81%8B"><span class="toc-text">(1) 「名」は「名」ですか</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-%E5%BA%94%E7%AD%94"><span class="toc-text">(2) 应答</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-%E3%80%8C%E5%90%8D%E3%80%8D%E3%81%AE%E3%80%8C%E5%90%8D%E3%80%8D%E3%80%90%E4%BB%8E%E5%B1%9E%E6%9C%BA%E6%9E%84%E3%80%81%E5%9B%BD%E5%AE%B6%E3%80%91%E3%80%90%E5%B1%9E%E6%80%A7%E3%80%91"><span class="toc-text">4. 「名」の「名」【从属机构、国家】【属性】</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%A1%A8%E8%BE%BE%E5%8F%8A%E8%AF%8D%E8%AF%AD%E8%AE%B2%E8%A7%A3"><span class="toc-text">表达及词语讲解</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E4%BA%BA%E7%A7%B0"><span class="toc-text">1. 人称</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-%E2%80%9C%E3%82%8F%E3%81%9F%E3%81%97%E2%80%9D%E2%80%9C%E3%81%82%E3%81%AA%E3%81%9F%E2%80%9D%E2%80%9C%E3%81%82%E3%81%AE%E4%BA%BA%E2%80%9D"><span class="toc-text">(1) “わたし”“あなた”“あの人”</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-%EF%BD%9E%E3%81%95%E3%82%93"><span class="toc-text">(2) ～さん</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E7%9C%81%E7%95%A5%E3%80%90%E7%AC%AC%E4%B8%80%E3%80%81%E7%AC%AC%E4%BA%8C%E4%BA%BA%E7%A7%B0%E4%B8%BB%E8%AF%AD%E7%9A%84%E7%9C%81%E7%95%A5%E3%80%91"><span class="toc-text">2. 省略【第一、第二人称主语的省略】</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-%E3%80%90%E5%8F%B9%E8%AF%8D%E3%80%91"><span class="toc-text">3. 【叹词】</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-%E3%80%90%E5%AF%92%E6%9A%84%E8%AF%AD%E3%80%91"><span class="toc-text">4. 【寒暄语】</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-%E2%80%9C%E4%BC%9A%E7%A4%BE%E5%93%A1%E2%80%9D%E5%92%8C%E2%80%9C%E7%A4%BE%E5%93%A1%E2%80%9D"><span class="toc-text">5. “会社員”和“社員”</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9B%BD%E5%AE%B6-%E4%BA%BA-%E8%AF%AD%E8%A8%80"><span class="toc-text">国家&#x2F;人&#x2F;语言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%94%9F%E8%AF%8D%E8%A1%A8"><span class="toc-text">生词表</span></a></li></ol>
+</div></main>
+            <aside class="left-column">
+              
+              <div class="card card-author">
+                
+  <img 
+    src="/img/logo.jpg" 
+    class="author-img" 
+    alt="author avatar">
+
+<p class="author-name">夜楼</p>
+<p class="author-description">计算机相关学习笔记</p>
+<div class="author-message">
+  <a 
+    class="author-posts-count" 
+    href="/archives">
+    <span>9</span>
+    <span>文章</span>
+  </a>
+  <a 
+    class="author-categories-count" 
+    href="/categories">
+    <span>4</span>
+    <span>分类</span>
+  </a>
+  <a 
+    class="author-tags-count" 
+    href="/tags">
+    <span>6</span>
+    <span>标签</span>
+  </a>
+</div>
+
+  <div class="author-card-society">
+    
+      <div class="author-card-society-icon">
+        <a target="_blank" rel="noopener" href="https://xxx">
+          <i class="iconfont iconfont icon-qq-fill-round society-icon"></i>
+        </a>
+      </div>
+    
+      <div class="author-card-society-icon">
+        <a target="_blank" rel="noopener" href="https://xxx">
+          <i class="iconfont iconfont icon-wechat-fill-round society-icon"></i>
+        </a>
+      </div>
+    
+      <div class="author-card-society-icon">
+        <a target="_blank" rel="noopener" href="https://xxx">
+          <i class="iconfont iconfont icon-gitee-fill-round society-icon"></i>
+        </a>
+      </div>
+    
+      <div class="author-card-society-icon">
+        <a target="_blank" rel="noopener" href="https://xxx">
+          <i class="iconfont iconfont icon-github-fill-round society-icon"></i>
+        </a>
+      </div>
+    
+      <div class="author-card-society-icon">
+        <a target="_blank" rel="noopener" href="https://xxx">
+          <i class="iconfont iconfont icon-codepen-fill-round society-icon"></i>
+        </a>
+      </div>
+    
+  </div>
+
+              </div>
+               <div class="sticky-tablet">
+  
+  
+    <article class="display-when-two-columns spacer">
+      <div class="card card-content toc-card">
+        <div class="toc-header">
+  <i 
+    class="iconfont icon-menu" 
+    style="padding-right: 2px;">
+  </i>目录
+</div>
+<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9F%BA%E6%9C%AC%E8%AF%BE%E6%96%87"><span class="toc-text">基本课文</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BA%94%E7%94%A8%E8%AF%BE%E6%96%87"><span class="toc-text">应用课文</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AF%AD%E6%B3%95%E8%A7%A3%E9%87%8A"><span class="toc-text">语法解释</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E3%80%8C%E5%90%8D%E3%80%8D%E3%81%AF%E3%80%8C%E5%90%8D%E3%80%8D%E3%81%A7%E3%81%99"><span class="toc-text">1. 「名」は「名」です</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E3%80%8C%E5%90%8D%E3%80%8D%E3%81%AF%E3%80%8C%E5%90%8D%E3%80%8D%E3%81%A7%E3%81%AF%E3%81%82%E3%82%8A%E3%81%BE%E3%81%95%E3%82%93"><span class="toc-text">2. 「名」は「名」ではありまさん</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-%E7%96%91%E9%97%AE%E5%8F%A5%E5%8F%8A%E5%BA%94%E7%AD%94"><span class="toc-text">3. 疑问句及应答</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-%E3%80%8C%E5%90%8D%E3%80%8D%E3%81%AF%E3%80%8C%E5%90%8D%E3%80%8D%E3%81%A7%E3%81%99%E3%81%8B"><span class="toc-text">(1) 「名」は「名」ですか</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-%E5%BA%94%E7%AD%94"><span class="toc-text">(2) 应答</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-%E3%80%8C%E5%90%8D%E3%80%8D%E3%81%AE%E3%80%8C%E5%90%8D%E3%80%8D%E3%80%90%E4%BB%8E%E5%B1%9E%E6%9C%BA%E6%9E%84%E3%80%81%E5%9B%BD%E5%AE%B6%E3%80%91%E3%80%90%E5%B1%9E%E6%80%A7%E3%80%91"><span class="toc-text">4. 「名」の「名」【从属机构、国家】【属性】</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%A1%A8%E8%BE%BE%E5%8F%8A%E8%AF%8D%E8%AF%AD%E8%AE%B2%E8%A7%A3"><span class="toc-text">表达及词语讲解</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E4%BA%BA%E7%A7%B0"><span class="toc-text">1. 人称</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-%E2%80%9C%E3%82%8F%E3%81%9F%E3%81%97%E2%80%9D%E2%80%9C%E3%81%82%E3%81%AA%E3%81%9F%E2%80%9D%E2%80%9C%E3%81%82%E3%81%AE%E4%BA%BA%E2%80%9D"><span class="toc-text">(1) “わたし”“あなた”“あの人”</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-%EF%BD%9E%E3%81%95%E3%82%93"><span class="toc-text">(2) ～さん</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E7%9C%81%E7%95%A5%E3%80%90%E7%AC%AC%E4%B8%80%E3%80%81%E7%AC%AC%E4%BA%8C%E4%BA%BA%E7%A7%B0%E4%B8%BB%E8%AF%AD%E7%9A%84%E7%9C%81%E7%95%A5%E3%80%91"><span class="toc-text">2. 省略【第一、第二人称主语的省略】</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-%E3%80%90%E5%8F%B9%E8%AF%8D%E3%80%91"><span class="toc-text">3. 【叹词】</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-%E3%80%90%E5%AF%92%E6%9A%84%E8%AF%AD%E3%80%91"><span class="toc-text">4. 【寒暄语】</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-%E2%80%9C%E4%BC%9A%E7%A4%BE%E5%93%A1%E2%80%9D%E5%92%8C%E2%80%9C%E7%A4%BE%E5%93%A1%E2%80%9D"><span class="toc-text">5. “会社員”和“社員”</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9B%BD%E5%AE%B6-%E4%BA%BA-%E8%AF%AD%E8%A8%80"><span class="toc-text">国家&#x2F;人&#x2F;语言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%94%9F%E8%AF%8D%E8%A1%A8"><span class="toc-text">生词表</span></a></li></ol>
+      </div>
+    </article>
+  
+  
+  <article class="card card-content categories-widget">
+    <div class="categories-card">
+  <div class="categories-header">
+    <i 
+      class="iconfont icon-fenlei" 
+      style="padding-right: 2px;">
+    </i>分类
+  </div>
+  <div class="categories-list">
+    
+      <a href="/categories/blog%E6%90%AD%E5%BB%BA/">
+        <div class="categories-list-item">
+          blog搭建
+          <span class="categories-list-item-badge">1</span>
+        </div>
+      </a>
+    
+      <a href="/categories/%E6%B5%81%E5%AA%92%E4%BD%93%E6%9C%8D%E5%8A%A1%E5%99%A8%E6%90%AD%E5%BB%BA/">
+        <div class="categories-list-item">
+          流媒体服务器搭建
+          <span class="categories-list-item-badge">1</span>
+        </div>
+      </a>
+    
+      <a href="/categories/%E6%96%B0%E7%89%88%E6%A0%87%E5%87%86%E6%97%A5%E6%9C%AC%E8%AF%AD%E5%88%9D%E7%BA%A7/">
+        <div class="categories-list-item">
+          新版标准日本语初级
+          <span class="categories-list-item-badge">1</span>
+        </div>
+      </a>
+    
+      <a href="/categories/%E6%97%A5%E8%AF%AD%E7%94%9F%E8%AF%8D%E8%A1%A8/">
+        <div class="categories-list-item">
+          日语生词表
+          <span class="categories-list-item-badge">6</span>
+        </div>
+      </a>
+    
+  </div>
+</div>
+  </article>
+  
+  <article class="card card-content tags-widget">
+    <div class="tags-card">
+  <div class="tags-header">
+    <i 
+      class="iconfont icon-biaoqian" 
+      style="padding-right: 2px;">
+    </i>热门标签
+  </div>
+  <div class="tags-list">
+    
+      <a 
+        href="/tags/hexo/" 
+        title="hexo">
+        <div class="tags-list-item">hexo</div>
+      </a>
+    
+      <a 
+        href="/tags/kaze/" 
+        title="kaze">
+        <div class="tags-list-item">kaze</div>
+      </a>
+    
+      <a 
+        href="/tags/nginx/" 
+        title="nginx">
+        <div class="tags-list-item">nginx</div>
+      </a>
+    
+      <a 
+        href="/tags/ffmpeg/" 
+        title="ffmpeg">
+        <div class="tags-list-item">ffmpeg</div>
+      </a>
+    
+      <a 
+        href="/tags/jp-study/" 
+        title="jp-study">
+        <div class="tags-list-item">jp-study</div>
+      </a>
+    
+      <a 
+        href="/tags/jp-word/" 
+        title="jp-word">
+        <div class="tags-list-item">jp-word</div>
+      </a>
+    
+  </div>
+</div>
+  </article>
+  
+  
+</div>
+            </aside>
+            <aside class="right-column">
+              <div class="sticky-widescreen">
+  
+  
+    <article class="card card-content toc-card">
+      <div class="toc-header">
+  <i 
+    class="iconfont icon-menu" 
+    style="padding-right: 2px;">
+  </i>目录
+</div>
+<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9F%BA%E6%9C%AC%E8%AF%BE%E6%96%87"><span class="toc-text">基本课文</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BA%94%E7%94%A8%E8%AF%BE%E6%96%87"><span class="toc-text">应用课文</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AF%AD%E6%B3%95%E8%A7%A3%E9%87%8A"><span class="toc-text">语法解释</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E3%80%8C%E5%90%8D%E3%80%8D%E3%81%AF%E3%80%8C%E5%90%8D%E3%80%8D%E3%81%A7%E3%81%99"><span class="toc-text">1. 「名」は「名」です</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E3%80%8C%E5%90%8D%E3%80%8D%E3%81%AF%E3%80%8C%E5%90%8D%E3%80%8D%E3%81%A7%E3%81%AF%E3%81%82%E3%82%8A%E3%81%BE%E3%81%95%E3%82%93"><span class="toc-text">2. 「名」は「名」ではありまさん</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-%E7%96%91%E9%97%AE%E5%8F%A5%E5%8F%8A%E5%BA%94%E7%AD%94"><span class="toc-text">3. 疑问句及应答</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-%E3%80%8C%E5%90%8D%E3%80%8D%E3%81%AF%E3%80%8C%E5%90%8D%E3%80%8D%E3%81%A7%E3%81%99%E3%81%8B"><span class="toc-text">(1) 「名」は「名」ですか</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-%E5%BA%94%E7%AD%94"><span class="toc-text">(2) 应答</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-%E3%80%8C%E5%90%8D%E3%80%8D%E3%81%AE%E3%80%8C%E5%90%8D%E3%80%8D%E3%80%90%E4%BB%8E%E5%B1%9E%E6%9C%BA%E6%9E%84%E3%80%81%E5%9B%BD%E5%AE%B6%E3%80%91%E3%80%90%E5%B1%9E%E6%80%A7%E3%80%91"><span class="toc-text">4. 「名」の「名」【从属机构、国家】【属性】</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%A1%A8%E8%BE%BE%E5%8F%8A%E8%AF%8D%E8%AF%AD%E8%AE%B2%E8%A7%A3"><span class="toc-text">表达及词语讲解</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E4%BA%BA%E7%A7%B0"><span class="toc-text">1. 人称</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-%E2%80%9C%E3%82%8F%E3%81%9F%E3%81%97%E2%80%9D%E2%80%9C%E3%81%82%E3%81%AA%E3%81%9F%E2%80%9D%E2%80%9C%E3%81%82%E3%81%AE%E4%BA%BA%E2%80%9D"><span class="toc-text">(1) “わたし”“あなた”“あの人”</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-%EF%BD%9E%E3%81%95%E3%82%93"><span class="toc-text">(2) ～さん</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E7%9C%81%E7%95%A5%E3%80%90%E7%AC%AC%E4%B8%80%E3%80%81%E7%AC%AC%E4%BA%8C%E4%BA%BA%E7%A7%B0%E4%B8%BB%E8%AF%AD%E7%9A%84%E7%9C%81%E7%95%A5%E3%80%91"><span class="toc-text">2. 省略【第一、第二人称主语的省略】</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-%E3%80%90%E5%8F%B9%E8%AF%8D%E3%80%91"><span class="toc-text">3. 【叹词】</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-%E3%80%90%E5%AF%92%E6%9A%84%E8%AF%AD%E3%80%91"><span class="toc-text">4. 【寒暄语】</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-%E2%80%9C%E4%BC%9A%E7%A4%BE%E5%93%A1%E2%80%9D%E5%92%8C%E2%80%9C%E7%A4%BE%E5%93%A1%E2%80%9D"><span class="toc-text">5. “会社員”和“社員”</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9B%BD%E5%AE%B6-%E4%BA%BA-%E8%AF%AD%E8%A8%80"><span class="toc-text">国家&#x2F;人&#x2F;语言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%94%9F%E8%AF%8D%E8%A1%A8"><span class="toc-text">生词表</span></a></li></ol>
+    </article>
+  
+  
+  <article class="card card-content">
+    <div class="recent-posts-card">
+  <div class="recent-posts-header">
+    <i 
+      class="iconfont icon-wenzhang_huaban" 
+      style="padding-right: 2px;">
+    </i>最近文章
+  </div>
+  <div class="recent-posts-list">
+    
+      <div class="recent-posts-item">
+        <div class="recent-posts-item-title">2021-07-03</div>
+        <a href="/2021/07/03/jp-word-%E7%9F%AD%E8%AF%AD/"><div class="recent-posts-item-content">生词表【短语】</div></a>
+      </div>
+    
+      <div class="recent-posts-item">
+        <div class="recent-posts-item-title">2021-07-03</div>
+        <a href="/2021/07/03/jp-word-%E4%B8%93/"><div class="recent-posts-item-content">生词表【专】</div></a>
+      </div>
+    
+      <div class="recent-posts-item">
+        <div class="recent-posts-item-title">2021-07-03</div>
+        <a href="/2021/07/03/jp-word-%E5%8F%B9/"><div class="recent-posts-item-content">生词表【叹】</div></a>
+      </div>
+    
+      <div class="recent-posts-item">
+        <div class="recent-posts-item-title">2021-07-03</div>
+        <a href="/2021/07/03/jp-word-%E5%89%AF/"><div class="recent-posts-item-content">生词表【副】</div></a>
+      </div>
+    
+  </div>
+</div>
+  </article>
+  
+  
+</div>
+            </aside>
+          </div>
+        </div>
+      </div>
+    </div>
+     
+    <footer class="footer">
+  <div class="footer-container">
+    <div>
+      <div class="footer-dsc">
+        <span>
+          Copyright ©
+          
+            2021 -
+          
+          2021
+        </span>
+        &nbsp;
+        <a 
+          href="/" 
+          class="footer-link">
+          码农充电站
+        </a>
+      </div>
+    </div>
+
+    
+    
+    
+    
+      <div class="footer-dsc">
+        
+          本站总访问量<span id="busuanzi_value_site_pv"></span>次
+        
+        
+          <span>&nbsp;|&nbsp;</span>
+        
+        
+          本站总访客数<span id="busuanzi_value_site_uv"></span>次
+        
+      </div>
+      
+    
+</footer> 
+    
+  <a 
+    role="button" 
+    id="scrollbutton" 
+    class="basebutton" 
+    aria-label="回到顶部">
+    <i class="iconfont icon-arrowleft button-icon"></i>
+  </a>
+
+<a 
+  role="button" 
+  id="menubutton" 
+  class="basebutton">
+  <i class="iconfont icon-menu button-icon"></i>
+</a>
+<a 
+  role="button" 
+  id="popbutton" 
+  class="basebutton" 
+  aria-label="控制中心">
+  <i class="iconfont icon-expand button-icon"></i>
+</a>
+<a 
+  role="button" 
+  id="darkbutton" 
+  class="basebutton darkwidget" 
+  aria-label="夜色模式">
+  <i class="iconfont icon-weather button-icon"></i>
+</a>
+<a 
+  role="button" 
+  id="searchbutton" 
+  class="basebutton searchwidget" 
+  aria-label="搜索">
+  <i class="iconfont icon-search button-icon"></i>
+</a> 
+     
+     
+     
+      <script>
+  var addImgLayout = function () {
+    var img = document.querySelectorAll('.post-content img')
+    var i
+    for (i = 0; i < img.length; i++) {
+      var wrapper = document.createElement('a')
+      wrapper.setAttribute('href', img[i].getAttribute('data-src'))
+      wrapper.setAttribute('aria-label', 'illustration')
+      wrapper.style.cssText =
+        'width: 100%; display: flex; justify-content: center;'
+      if (img[i].alt) wrapper.dataset.caption = img[i].alt
+      wrapper.dataset.nolink = true
+      img[i].before(wrapper)
+      wrapper.append(img[i])
+      var divWrap = document.createElement('div')
+      divWrap.classList.add('gallery')
+      wrapper.before(divWrap)
+      divWrap.append(wrapper)
+    }
+    baguetteBox.run('.gallery')
+  }
+</script>
+<script>
+  loadScript(
+    "/js/lib/lightbox/baguetteBox.min.js",
+    addImgLayout
+  )
+</script>
+ 
+     
+     
+    <script src="/js/main.js"></script> 
+    
+      <script> 
+        loadScript('/js/lib/busuanzi.min.js') 
+      </script>
+     
+    
+      <script>
+        var addLazyload = function () {
+          var observer = lozad('.lozad', {
+            load: function (el) {
+              el.srcset = el.getAttribute('data-src')
+            },
+            loaded: function (el) {
+              el.classList.add('loaded')
+            },
+          })
+          observer.observe()
+        }
+      </script>
+      <script>
+        loadScript('/js/lib/lozad.min.js', addLazyload)
+      </script>
+     
+    
+    
+  </body>
+</html>
