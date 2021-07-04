@@ -1,0 +1,779 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+  <meta charset="UTF-8">
+  <meta 
+    name="viewport"
+    content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+  <meta 
+    http-equiv="X-UA-Compatible" 
+    content="ie=edge">
+  <meta 
+    name="theme-color" 
+    content="#fff" 
+    id="theme-color">
+  <meta 
+    name="description" 
+    content="码农充电站">
+  <link 
+    rel="icon" 
+    href="/img/logo.jpg">
+  <title>植物育种手册</title>
+  
+    
+      <meta 
+        property="og:title" 
+        content="植物育种手册">
+    
+    
+      <meta 
+        property="og:url" 
+        content="https://parischerryblossoms.github.io/2021/07/04/plant-breeding-manual/index.html">
+    
+    
+      <meta 
+        property="og:img" 
+        content="/img/logo.jpg">
+    
+    
+    
+      <meta 
+        property="og:type" 
+        content="article">
+      <meta 
+        property="og:article:published_time" 
+        content="2021-07-04">
+      <meta 
+        property="og:article:modified_time" 
+        content="2021-07-04">
+      <meta 
+        property="og:article:author" 
+        content="夜楼">
+      
+        
+          <meta 
+            property="og:article:tag" 
+            content="plant">
+        
+      
+    
+  
+  <script>
+    function loadScript(url, cb) {
+      var script = document.createElement('script');
+      script.src = url;
+      if (cb) script.onload = cb;
+      script.async = true;
+      document.body.appendChild(script);
+    }
+    function loadCSS(href, data, attr) {
+      var sheet = document.createElement('link');
+      sheet.ref = 'stylesheet';
+      sheet.href = href;
+      sheet.dataset[data] = attr;
+      document.head.appendChild(sheet);
+    }
+    function changeCSS(cssFile, data, attr) {
+      var oldlink = document.querySelector(data);
+      var newlink = document.createElement("link");
+      newlink.setAttribute("rel", "stylesheet");
+      newlink.setAttribute("href", cssFile);
+      newlink.dataset.prism = attr;
+      document.head.replaceChild(newlink, oldlink);
+    }
+  </script>
+  
+    
+  
+  <script>
+    // control reverse button
+    var reverseDarkList = {
+      dark: 'light',
+      light: 'dark'
+    };
+    var themeColor = {
+      dark: '#1c1c1e',
+      light: '#fff'
+    }
+    // get the data of css prefers-color-scheme
+    var getCssMediaQuery = function() {
+      return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+    };
+    // reverse current darkmode setting function
+    var reverseDarkModeSetting = function() {
+      var setting = localStorage.getItem('user-color-scheme');
+      if(reverseDarkList[setting]) {
+        setting = reverseDarkList[setting];
+      } else if(setting === null) {
+        setting = reverseDarkList[getCssMediaQuery()];
+      } else {
+        return;
+      }
+      localStorage.setItem('user-color-scheme', setting);
+      return setting;
+    };
+    // apply current darkmode setting
+  </script>
+  
+    <script>
+      var setDarkmode = function(mode) {
+      var setting = mode || localStorage.getItem('user-color-scheme');
+      if(setting === getCssMediaQuery()) {
+        document.documentElement.removeAttribute('data-user-color-scheme');
+        localStorage.removeItem('user-color-scheme');
+        document.getElementById('theme-color').content = themeColor[setting];
+        document.getElementById('theme-color').dataset.mode = setting;
+      } else if(reverseDarkList[setting]) {
+        document.documentElement.setAttribute('data-user-color-scheme', setting);
+        document.getElementById('theme-color').content = themeColor[setting];
+        document.getElementById('theme-color').dataset.mode = setting;
+      } else {
+        document.documentElement.removeAttribute('data-user-color-scheme');
+        localStorage.removeItem('user-color-scheme');
+        document.getElementById('theme-color').content = themeColor[getCssMediaQuery()];
+        document.getElementById('theme-color').dataset.mode = getCssMediaQuery();
+      }
+    };
+    setDarkmode();
+    </script>
+  
+  
+  <link rel="preload" href="//at.alicdn.com/t/font_1946621_i1kgafibvw.css" as="style" >
+  <link rel="preload" href="//at.alicdn.com/t/font_1952792_89b4ac4k4up.css" as="style" >
+  
+  
+    <link rel="preload" href="/js/lib/lightbox/baguetteBox.min.js" as="script">
+    <link rel="preload" href="/js/lib/lightbox/baguetteBox.min.css" as="style" >
+  
+  
+    <link rel="preload" href="/js/lib/lozad.min.js" as="script">
+  
+  
+  
+  
+  
+  
+  
+  <link rel="stylesheet" href="/css/main.css">
+  
+  <link rel="stylesheet" href="//at.alicdn.com/t/font_1946621_i1kgafibvw.css">
+    <link rel="stylesheet" href="/iconfont/iconfont.css">
+  
+  <link rel="stylesheet" href="//at.alicdn.com/t/font_1952792_89b4ac4k4up.css">
+  
+    <link rel="stylesheet" href="/js/lib/lightbox/baguetteBox.min.css">
+  
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+  <body>
+    <div class="wrapper">
+       
+      <nav class="navbar">
+  <div class="navbar-logo">
+    <span class="navbar-logo-main">
+      
+        <img 
+          class="navbar-logo-img" 
+          src="/img/logo.jpg" 
+          alt="blog logo">
+      
+      <span class="navbar-logo-dsc">码农充电站</span>
+    </span>
+  </div>
+  <div class="navbar-menu">
+    
+      <a 
+        href="/" 
+        class="navbar-menu-item">
+        
+          首页
+        
+      </a>
+    
+      <a 
+        href="/archives" 
+        class="navbar-menu-item">
+        
+          归档
+        
+      </a>
+    
+      <a 
+        href="/tags" 
+        class="navbar-menu-item">
+        
+          标签
+        
+      </a>
+    
+      <a 
+        href="/categories" 
+        class="navbar-menu-item">
+        
+          分类
+        
+      </a>
+    
+      <a 
+        href="/about" 
+        class="navbar-menu-item">
+        
+          关于
+        
+      </a>
+    
+      <a 
+        href="/links" 
+        class="navbar-menu-item">
+        
+          友链
+        
+      </a>
+    
+    <a 
+      class="navbar-menu-item darknavbar" 
+      id="dark">
+      <i class="iconfont icon-weather"></i>
+    </a>
+    <a 
+      class="navbar-menu-item searchnavbar" 
+      id="search">
+      <i 
+        class="iconfont icon-search" 
+        style="font-size: 1.2rem; font-weight: 400;">
+      </i>
+    </a>
+  </div>
+</nav> 
+      
+      <div 
+        id="local-search" 
+        style="display: none">
+        <input
+          class="navbar-menu-item"
+          id="search-input"
+          placeholder="请输入搜索内容..." />
+        <div id="search-content"></div>
+      </div>
+      
+      <div class="section-wrap">
+        <div class="container">
+          <div class="columns">
+            <main class="main-column">
+<article class="card card-content">
+  <header>
+    <h1 class="post-title">
+      植物育种手册
+    </h1>
+  </header>
+  <div class="post-meta post-show-meta">
+    <time datetime="2021-07-04T03:11:17.000Z">
+      <i 
+        class="iconfont icon-calendar" 
+        style="margin-right: 2px;">
+      </i>
+      <span>2021-07-04</span>
+    </time>
+    
+      <span class="dot"></span>
+      
+        <a 
+          href="/categories/%E6%A4%8D%E7%89%A9%E8%82%B2%E7%A7%8D%E6%89%8B%E5%86%8C/" 
+          class="post-meta-link">
+          植物育种手册
+        </a>
+      
+    
+    
+      <span class="dot"></span>
+      <span>2.8k 字</span>
+    
+  </div>
+  
+    <div 
+      class="post-meta post-show-meta" 
+      style="margin-top: -10px;">
+      <div style="display: flex; align-items: center;">
+        <i 
+          class="iconfont icon-biaoqian" 
+          style="margin-right: 2px; font-size: 1.15rem;">
+        </i>
+        
+          
+          <a 
+            href="/tags/plant/" 
+            class="post-meta-link">
+            plant
+          </a>
+        
+      </div>
+    </div>
+  
+  </header>
+  <div 
+    id="section" 
+    class="post-content">
+    <h2 id="学习网站："><a href="#学习网站：" class="headerlink" title="学习网站："></a>学习网站：</h2><p><a target="_blank" rel="noopener" href="http://www.yangzhiriji.com/">养殖日记</a><br><a target="_blank" rel="noopener" href="https://www.huabaike.com/">花百科</a></p>
+<h2 id="榕树"><a href="#榕树" class="headerlink" title="榕树"></a>榕树</h2><h3 id="1-榕树养殖的土壤选择"><a href="#1-榕树养殖的土壤选择" class="headerlink" title="1.榕树养殖的土壤选择"></a>1.榕树养殖的土壤选择</h3><p>&emsp;&emsp;榕树喜阳光充足、通风良好、温暖潮湿的环境。夏季天气炎热时，要适当蔽荫，并经常向地面洒水，保持小气候有一定湿度。在北方，秋末或初冬，要把榕树盆景移人室内越冬。</p>
+<h3 id="2-榕树养殖的施肥方法"><a href="#2-榕树养殖的施肥方法" class="headerlink" title="2.榕树养殖的施肥方法"></a>2.榕树养殖的施肥方法</h3><p>&emsp;&emsp;在生长季节每月施一次腐熟稀薄的有机液肥，每年5月8月各施一次“矾肥水”。榕树施肥不要太多。肥多枝条徒长，叶片增大反而不美。夏季天气炎热时和冬季不要施肥。<br>&emsp;&emsp;榕树因生长快，当正常生长后可每天进行一次根外追肥，用腐熟的人畜尿或沤熟的肥做追肥，换盆时也可施底肥，充足的肥料可使树干长得粗壮。如果盆土肥沃则不必追肥，可在夏秋的生长期中用营养液进行叶面喷施，使之枝叶稠密翠绿，给人以美的感受。</p>
+<h3 id="3-榕树养殖的浇水方法"><a href="#3-榕树养殖的浇水方法" class="headerlink" title="3.榕树养殖的浇水方法"></a>3.榕树养殖的浇水方法</h3><p>&emsp;&emsp;榕树系热带植物，喜欢大水大肥，它的适应性很强，能在石缝中生长，也能在水中生长，但成长后的榕树，应保持盆土湿润，不可在盆中积水，夏季浇水以一天两次为宜。<br>&emsp;&emsp;榕树喜湿润，在生长期应经常浇水，使盆土保持一定湿度，但盆内不可积水。冬季温度低，水分蒸发少，要适当少浇水。榕树喜湿润，在生长季节要保持盆土潮湿，在夏季除向盆内浇水外，还应向地面常洒水，使局部小气候保持一定湿度。但盆内不可积水。冬季要少浇水，盆土潮湿就不用浇水。</p>
+<h3 id="4-榕树养殖的光照要求"><a href="#4-榕树养殖的光照要求" class="headerlink" title="4.榕树养殖的光照要求"></a>4.榕树养殖的光照要求</h3><p>&emsp;&emsp;榕树喜阳光充足、温暖湿润、通风的场所，夏季天气炎热时可适当遮荫。在北方冬季要移入室内越冬，室温在8℃左右。榕树不怕阳光照晒，也相当耐阴，在室内长期陈设，叶片也不会发黄，冬季应让其多见阳光。</p>
+<h3 id="5-榕树养殖的盆景造型方法"><a href="#5-榕树养殖的盆景造型方法" class="headerlink" title="5.榕树养殖的盆景造型方法"></a>5.榕树养殖的盆景造型方法</h3><p>&emsp;&emsp;榕树因气根多，宜作恳根露爪式、多千叶盆景。做这两种盆景时，第一年先培其根基，养其精气，生长旺盛后，再提根换成浅盆。<br>&emsp;&emsp;榕树因生长快、根部发达，可做附石式盆景。栽培前将树用金属丝蟠扎成大小不等的弯曲形状，斜栽在土盆里，培养2—3个月以后，气根增多，树冠定型，然后把树苗取出来，将培养土除净，把树苗攀附在选好的石块上。这寸要注意榕树与蟠扎树石取势一致，根尽量嵌入石隙缝里。用棉布条或金属丝将根缠牢，放在高的大盆里培养。附石盆景可根据树势尽量掌握可创制成抱石式、穿石式、贴石式等形式。</p>
+<h3 id="6-榕树养殖的翻盆方法"><a href="#6-榕树养殖的翻盆方法" class="headerlink" title="6.榕树养殖的翻盆方法"></a>6.榕树养殖的翻盆方法</h3><p>&emsp;&emsp;树龄不长的榕树盆景2年翻一次盆，老桩盆景3～4年翻一次盆，时间以4月下旬至5月上旬为好，冬季不易翻盆。去除1／2旧盆土，剪除枯根、短根、剪短过长根、疏剪部分过密根，增加部分新的有一定肥力培养土，把榕树栽种好。有时利用翻盆之机改变树木的造型，或更换欣赏价值更高的盆钵中。</p>
+<h3 id="7-榕树养殖的注意事项"><a href="#7-榕树养殖的注意事项" class="headerlink" title="7.榕树养殖的注意事项"></a>7.榕树养殖的注意事项</h3><p>&emsp;&emsp;（1）榕树修剪整形多在休眠期进行，生长期树液流动较快，修剪后有较多的白色粘稠树液流出，对植株生长不利。榕树四季均可进行攀扎，在生长期攀扎时，注意不要损伤树皮，以免树液流出。<br>&emsp;&emsp;（2）榕树生长季节要经常保持盆土湿润，特别应注意提高空气湿度，在干燥的空气中叶片会焦边、变黄，并逐步脱落。<br>&emsp;&emsp;（3）室内陈设榕树应放在通风又有明亮的散射光处，室外陈设时，春、夏两季应适当遮阴，冬季可多见些阳光。冬季室温宜保持在5—8℃，盆土防止过干、过湿，每周用与室温接近的温水清洗一次叶面，使叶片清洁亮绿。如果冬季室温过高，应开窗通气，否则来年春季出室后会大量落叶。</p>
+<h3 id="8-榕树养殖的繁殖方法"><a href="#8-榕树养殖的繁殖方法" class="headerlink" title="8.榕树养殖的繁殖方法"></a>8.榕树养殖的繁殖方法</h3><p>&emsp;&emsp;（1）榕树扦插法繁殖<br>&emsp;&emsp;&emsp;&emsp;选枝条粗壮地剪栽，将其插入疏松透气偏酸性的石粉、河沙、煤渣混合土中，深约3厘米，浇透水后转阴凉背风处养护。地植的用遮盖物遮阳。如果初春扦插时，温度较低，最好用薄膜套袋，保持恒温，便于成活。平时应保持土壤湿润，不积水。榕树是先生芽后生根，待芽长至5—6厘米时，逐渐让桩材见阳光，待其芽、根长壮后再移植上盆。<br>&emsp;&emsp;（2）榕树分株法繁殖<br>&emsp;&emsp;&emsp;&emsp;榕树有生根发芽快的特点，可选树干曲折、千古奇特、适合做盆景的桩材从每株上分移植，尽量多保留些气根，经过一至两年的精心培育生出了气根后，便可根据作者构思培育成型。</p>
+<h3 id="9-榕树养殖的病虫害防治方法"><a href="#9-榕树养殖的病虫害防治方法" class="headerlink" title="9.榕树养殖的病虫害防治方法"></a>9.榕树养殖的病虫害防治方法</h3><p>&emsp;&emsp;榕树病虫害较少，通风透光不良或施氮肥过多可能引发白粉病，可用50％多菌灵可湿性粉剂500倍液喷雾。虫害偶有介壳虫发生，可用80％敌敌畏乳油1500倍喷雾。或把适量呋喃丹颗粒浅埋盆土中后，浇透水药效快。</p>
+<h3 id="10-榕树嫩叶为何枯焦卷曲"><a href="#10-榕树嫩叶为何枯焦卷曲" class="headerlink" title="10.榕树嫩叶为何枯焦卷曲?"></a>10.榕树嫩叶为何枯焦卷曲?</h3><p>&emsp;&emsp;榕树在8—9月问出现新抽叶片发焦卷曲现象，可能有以下几个主面的原因。<br>&emsp;&emsp;（1）病虫原因。如榕树叶斑病，会导致叶片出现黑色斑点，多发生在6—9月份，可剪去病叶，及时用50％的代森铵可湿性粉剂1500倍液进行防治；或者是遭榕管蓟马危害，其刺吸会造成叶片和嫩梢生长畸形，叶片卷缩，但受害部位为深紫红色，南方地区全年均有可能发生，北方地区在棚内或荫棚下均可能发生，可用10％的吡虫啉可湿性粉剂2000倍液喷杀；另外，螨类刺吸危害在高温干燥的条件下也会造成叶片枯焦卷曲，可用25％的倍乐霸可湿性粉剂2000倍液喷杀。<br>&emsp;&emsp;（2）环境原因。如突然将其从蔽荫处搬放到阳光强烈处，会造成新叶发焦卷曲；再如空气过分干燥，特别是遭干热风的吹袭，也很容易造成新抽嫩叶发焦卷曲，应加强植株及周围小环境的喷水增湿。<br>&emsp;&emsp;（3）误用肥料或农药的原因。如叶面喷洒了高浓度的化肥液，或喷洒了对榕树嫩叶比较敏感(即有药害)的农药，都有可能造成嫩叶发焦卷曲。</p>
+<h3 id="11-参考网站"><a href="#11-参考网站" class="headerlink" title="11.参考网站"></a>11.参考网站</h3><p><a target="_blank" rel="noopener" href="http://rongshu.yangzhiriji.com/">养殖日记-榕树的养殖方法和注意事项</a><br><a target="_blank" rel="noopener" href="http://rongshu.yangzhiriji.com/27/">养殖日记-榕树嫩叶为何枯焦卷曲?</a></p>
+<h2 id="萼距花"><a href="#萼距花" class="headerlink" title="萼距花"></a>萼距花</h2><h3 id="1-温度"><a href="#1-温度" class="headerlink" title="1.温度"></a>1.温度</h3><p>&emsp;&emsp;萼距花一般是比较喜欢温暖一点的地方，让它生长很好的最适宜的温度就是20到30度之间，另外它不怎么耐寒，所以冬天的温度最好在5度以上，不然它就会容易受到冻伤的。所以温度一定要控制好了。</p>
+<h3 id="2-光照"><a href="#2-光照" class="headerlink" title="2.光照"></a>2.光照</h3><p>&emsp;&emsp;萼距花喜欢阳光比较多的环境，也能耐受一定的半阴，除了在夏天需要进行适当的遮阳之外，其他的时间最好都让它能够更多的享受到阳光。如果光照不够的话，虽然它也是可以生长的，但是开出来的花非常不好看，有的时候还甚至不会开花。</p>
+<h3 id="3-浇水"><a href="#3-浇水" class="headerlink" title="3.浇水"></a>3.浇水</h3><p>&emsp;&emsp;萼距花很适合在湿润的土壤里面生存，对土壤里面的水分不是非常敏感。在它的生长期间，浇水不能太少也不能太多，只要让盆土是湿润的就可以。但是非常害怕有很多水的存在，不然就会让它的根烂掉。夏季的时候可以合理的多浇一点水，到了冬天就要开始控制浇水的量了，让盆土是干燥的比较好一点。</p>
+<h3 id="4-湿度"><a href="#4-湿度" class="headerlink" title="4.湿度"></a>4.湿度</h3><p>&emsp;&emsp;它本身比较适宜湿润的环境，所以空气内的湿度最好是50%到60%之间最好。在夏天温度比较高、天气很好干燥的时候，在给它浇水的时候还应该向它的周围地面也要进行适当喷水，这样不仅可以适当的降低温度，还能创造一个非常湿润凉爽的环境。</p>
+<h3 id="5-施肥"><a href="#5-施肥" class="headerlink" title="5.施肥"></a>5.施肥</h3><p>&emsp;&emsp;萼距花很耐受贫瘠的地方，在这种土壤里面也是可以正常长起来的。但是由于它的枝叶生长是很快的，开的花也是非常多，所以在生长期的时候应该给它每隔上半个月就要追加一次肥料。不能光单独的使用氮肥，不然虽然长得很好，但是开花很少。秋天的时候就可以停止施氮肥了，只要磷钾肥就可以了。冬天就不需要施肥了。</p>
+<h3 id="6-参考网站"><a href="#6-参考网站" class="headerlink" title="6.参考网站"></a>6.参考网站</h3><p><a target="_blank" rel="noopener" href="https://www.huabaike.com/jtyh/12918.html">花百科-萼距花的养殖方法及注意事项</a></p>
+<h2 id="袖珍椰子"><a href="#袖珍椰子" class="headerlink" title="袖珍椰子"></a>袖珍椰子</h2><h3 id="1-榕树养殖的土壤选择-1"><a href="#1-榕树养殖的土壤选择-1" class="headerlink" title="1.榕树养殖的土壤选择"></a>1.榕树养殖的土壤选择</h3><p>&emsp;&emsp;盆土不能用酸性土，还应加入少量黏土。因根系较多，要用高盆栽植。应在春季进 行换盆，每隔3年换盆1次较为适宜。</p>
+<h3 id="2-榕树养殖的浇水方法"><a href="#2-榕树养殖的浇水方法" class="headerlink" title="2.榕树养殖的浇水方法"></a>2.榕树养殖的浇水方法</h3><p>&emsp;&emsp;袖珍椰子适宜生长温度为20～30℃，较耐高温，冬季不可低于10℃。除保持盆土潮湿以外，还应经常向叶片及地面喷水，夏季把它放在阳台上养花也可偶尔淋浴一场小雨，对它的生长很有好处。</p>
+<h3 id="3-榕树养殖的光照要求"><a href="#3-榕树养殖的光照要求" class="headerlink" title="3.榕树养殖的光照要求"></a>3.榕树养殖的光照要求</h3><p>&emsp;&emsp;栽培时，袖珍椰子应常年置于没有强光直射的地方，最好不要放在南窗附近，光照过足会引起焦边，其在室内一般做中、小型盆栽，放在几案或窗台上观赏。它有黄色的小花，开花时枝繁叶茂的景象是最佳的观赏时期。</p>
+<h3 id="4-参考网站"><a href="#4-参考网站" class="headerlink" title="4.参考网站"></a>4.参考网站</h3><p><a target="_blank" rel="noopener" href="http://www.yangzhiriji.com/1521/">养殖日记-袖珍椰子的养殖方法</a></p>
+
+  </div>
+  <div>
+    
+      <div 
+        class="post-note note-warning copyright" 
+        style="margin-top: 42px">
+        <p>
+          <span style="font-weight: bold;">作者：</span><a 
+            target="_blank" 
+            rel="nofollow noopener noreferrer" 
+            href="/about">
+            夜楼
+          </a>
+        </p>
+        <p>
+          <span style="font-weight: bold;">文章链接：</span><a 
+            target="_blank" 
+            rel="nofollow noopener noreferrer" 
+            href="https://parischerryblossoms.github.io/2021/07/04/plant-breeding-manual/">
+            https://parischerryblossoms.github.io/2021/07/04/plant-breeding-manual/
+          </a>
+        </p>
+        <p><span style="font-weight: bold;">版权声明：</span>本博客所有文章除特别声明外，均采用<a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">CC BY-NC-SA 4.0 协议</a>。转载请注明出处！</p>
+      </div>
+    
+  </div>
+</article>
+<div class="nav">
+  
+  
+    <div class="nav-item-next">
+      <a 
+        href="/2021/07/03/jp-word-%E7%9F%AD%E8%AF%AD/" 
+        class="nav-link">
+        <div>
+          <div class="nav-label">下一篇</div>
+          
+            <div class="nav-title">生词表【短语】 </div>
+          
+        </div>
+        <i class="iconfont icon-right nav-next-icon"></i>
+      </a>
+    </div>
+  
+</div>
+
+<div 
+  class="card card-content toc-card" 
+  id="mobiletoc">
+  <div class="toc-header">
+  <i 
+    class="iconfont icon-menu" 
+    style="padding-right: 2px;">
+  </i>目录
+</div>
+<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AD%A6%E4%B9%A0%E7%BD%91%E7%AB%99%EF%BC%9A"><span class="toc-text">学习网站：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A6%95%E6%A0%91"><span class="toc-text">榕树</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E6%A6%95%E6%A0%91%E5%85%BB%E6%AE%96%E7%9A%84%E5%9C%9F%E5%A3%A4%E9%80%89%E6%8B%A9"><span class="toc-text">1.榕树养殖的土壤选择</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E6%A6%95%E6%A0%91%E5%85%BB%E6%AE%96%E7%9A%84%E6%96%BD%E8%82%A5%E6%96%B9%E6%B3%95"><span class="toc-text">2.榕树养殖的施肥方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-%E6%A6%95%E6%A0%91%E5%85%BB%E6%AE%96%E7%9A%84%E6%B5%87%E6%B0%B4%E6%96%B9%E6%B3%95"><span class="toc-text">3.榕树养殖的浇水方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-%E6%A6%95%E6%A0%91%E5%85%BB%E6%AE%96%E7%9A%84%E5%85%89%E7%85%A7%E8%A6%81%E6%B1%82"><span class="toc-text">4.榕树养殖的光照要求</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-%E6%A6%95%E6%A0%91%E5%85%BB%E6%AE%96%E7%9A%84%E7%9B%86%E6%99%AF%E9%80%A0%E5%9E%8B%E6%96%B9%E6%B3%95"><span class="toc-text">5.榕树养殖的盆景造型方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-%E6%A6%95%E6%A0%91%E5%85%BB%E6%AE%96%E7%9A%84%E7%BF%BB%E7%9B%86%E6%96%B9%E6%B3%95"><span class="toc-text">6.榕树养殖的翻盆方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#7-%E6%A6%95%E6%A0%91%E5%85%BB%E6%AE%96%E7%9A%84%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9"><span class="toc-text">7.榕树养殖的注意事项</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#8-%E6%A6%95%E6%A0%91%E5%85%BB%E6%AE%96%E7%9A%84%E7%B9%81%E6%AE%96%E6%96%B9%E6%B3%95"><span class="toc-text">8.榕树养殖的繁殖方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#9-%E6%A6%95%E6%A0%91%E5%85%BB%E6%AE%96%E7%9A%84%E7%97%85%E8%99%AB%E5%AE%B3%E9%98%B2%E6%B2%BB%E6%96%B9%E6%B3%95"><span class="toc-text">9.榕树养殖的病虫害防治方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#10-%E6%A6%95%E6%A0%91%E5%AB%A9%E5%8F%B6%E4%B8%BA%E4%BD%95%E6%9E%AF%E7%84%A6%E5%8D%B7%E6%9B%B2"><span class="toc-text">10.榕树嫩叶为何枯焦卷曲?</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#11-%E5%8F%82%E8%80%83%E7%BD%91%E7%AB%99"><span class="toc-text">11.参考网站</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%90%BC%E8%B7%9D%E8%8A%B1"><span class="toc-text">萼距花</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E6%B8%A9%E5%BA%A6"><span class="toc-text">1.温度</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E5%85%89%E7%85%A7"><span class="toc-text">2.光照</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-%E6%B5%87%E6%B0%B4"><span class="toc-text">3.浇水</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-%E6%B9%BF%E5%BA%A6"><span class="toc-text">4.湿度</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-%E6%96%BD%E8%82%A5"><span class="toc-text">5.施肥</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-%E5%8F%82%E8%80%83%E7%BD%91%E7%AB%99"><span class="toc-text">6.参考网站</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%A2%96%E7%8F%8D%E6%A4%B0%E5%AD%90"><span class="toc-text">袖珍椰子</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E6%A6%95%E6%A0%91%E5%85%BB%E6%AE%96%E7%9A%84%E5%9C%9F%E5%A3%A4%E9%80%89%E6%8B%A9-1"><span class="toc-text">1.榕树养殖的土壤选择</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E6%A6%95%E6%A0%91%E5%85%BB%E6%AE%96%E7%9A%84%E6%B5%87%E6%B0%B4%E6%96%B9%E6%B3%95"><span class="toc-text">2.榕树养殖的浇水方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-%E6%A6%95%E6%A0%91%E5%85%BB%E6%AE%96%E7%9A%84%E5%85%89%E7%85%A7%E8%A6%81%E6%B1%82"><span class="toc-text">3.榕树养殖的光照要求</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-%E5%8F%82%E8%80%83%E7%BD%91%E7%AB%99"><span class="toc-text">4.参考网站</span></a></li></ol></li></ol>
+</div></main>
+            <aside class="left-column">
+              
+              <div class="card card-author">
+                
+  <img 
+    src="/img/logo.jpg" 
+    class="author-img" 
+    alt="author avatar">
+
+<p class="author-name">夜楼</p>
+<p class="author-description">计算机相关学习笔记</p>
+<div class="author-message">
+  <a 
+    class="author-posts-count" 
+    href="/archives">
+    <span>10</span>
+    <span>文章</span>
+  </a>
+  <a 
+    class="author-categories-count" 
+    href="/categories">
+    <span>5</span>
+    <span>分类</span>
+  </a>
+  <a 
+    class="author-tags-count" 
+    href="/tags">
+    <span>7</span>
+    <span>标签</span>
+  </a>
+</div>
+
+  <div class="author-card-society">
+    
+      <div class="author-card-society-icon">
+        <a target="_blank" rel="noopener" href="https://xxx">
+          <i class="iconfont iconfont icon-qq-fill-round society-icon"></i>
+        </a>
+      </div>
+    
+      <div class="author-card-society-icon">
+        <a target="_blank" rel="noopener" href="https://xxx">
+          <i class="iconfont iconfont icon-wechat-fill-round society-icon"></i>
+        </a>
+      </div>
+    
+      <div class="author-card-society-icon">
+        <a target="_blank" rel="noopener" href="https://xxx">
+          <i class="iconfont iconfont icon-gitee-fill-round society-icon"></i>
+        </a>
+      </div>
+    
+      <div class="author-card-society-icon">
+        <a target="_blank" rel="noopener" href="https://xxx">
+          <i class="iconfont iconfont icon-github-fill-round society-icon"></i>
+        </a>
+      </div>
+    
+      <div class="author-card-society-icon">
+        <a target="_blank" rel="noopener" href="https://xxx">
+          <i class="iconfont iconfont icon-codepen-fill-round society-icon"></i>
+        </a>
+      </div>
+    
+  </div>
+
+              </div>
+               <div class="sticky-tablet">
+  
+  
+    <article class="display-when-two-columns spacer">
+      <div class="card card-content toc-card">
+        <div class="toc-header">
+  <i 
+    class="iconfont icon-menu" 
+    style="padding-right: 2px;">
+  </i>目录
+</div>
+<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AD%A6%E4%B9%A0%E7%BD%91%E7%AB%99%EF%BC%9A"><span class="toc-text">学习网站：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A6%95%E6%A0%91"><span class="toc-text">榕树</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E6%A6%95%E6%A0%91%E5%85%BB%E6%AE%96%E7%9A%84%E5%9C%9F%E5%A3%A4%E9%80%89%E6%8B%A9"><span class="toc-text">1.榕树养殖的土壤选择</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E6%A6%95%E6%A0%91%E5%85%BB%E6%AE%96%E7%9A%84%E6%96%BD%E8%82%A5%E6%96%B9%E6%B3%95"><span class="toc-text">2.榕树养殖的施肥方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-%E6%A6%95%E6%A0%91%E5%85%BB%E6%AE%96%E7%9A%84%E6%B5%87%E6%B0%B4%E6%96%B9%E6%B3%95"><span class="toc-text">3.榕树养殖的浇水方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-%E6%A6%95%E6%A0%91%E5%85%BB%E6%AE%96%E7%9A%84%E5%85%89%E7%85%A7%E8%A6%81%E6%B1%82"><span class="toc-text">4.榕树养殖的光照要求</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-%E6%A6%95%E6%A0%91%E5%85%BB%E6%AE%96%E7%9A%84%E7%9B%86%E6%99%AF%E9%80%A0%E5%9E%8B%E6%96%B9%E6%B3%95"><span class="toc-text">5.榕树养殖的盆景造型方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-%E6%A6%95%E6%A0%91%E5%85%BB%E6%AE%96%E7%9A%84%E7%BF%BB%E7%9B%86%E6%96%B9%E6%B3%95"><span class="toc-text">6.榕树养殖的翻盆方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#7-%E6%A6%95%E6%A0%91%E5%85%BB%E6%AE%96%E7%9A%84%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9"><span class="toc-text">7.榕树养殖的注意事项</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#8-%E6%A6%95%E6%A0%91%E5%85%BB%E6%AE%96%E7%9A%84%E7%B9%81%E6%AE%96%E6%96%B9%E6%B3%95"><span class="toc-text">8.榕树养殖的繁殖方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#9-%E6%A6%95%E6%A0%91%E5%85%BB%E6%AE%96%E7%9A%84%E7%97%85%E8%99%AB%E5%AE%B3%E9%98%B2%E6%B2%BB%E6%96%B9%E6%B3%95"><span class="toc-text">9.榕树养殖的病虫害防治方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#10-%E6%A6%95%E6%A0%91%E5%AB%A9%E5%8F%B6%E4%B8%BA%E4%BD%95%E6%9E%AF%E7%84%A6%E5%8D%B7%E6%9B%B2"><span class="toc-text">10.榕树嫩叶为何枯焦卷曲?</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#11-%E5%8F%82%E8%80%83%E7%BD%91%E7%AB%99"><span class="toc-text">11.参考网站</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%90%BC%E8%B7%9D%E8%8A%B1"><span class="toc-text">萼距花</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E6%B8%A9%E5%BA%A6"><span class="toc-text">1.温度</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E5%85%89%E7%85%A7"><span class="toc-text">2.光照</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-%E6%B5%87%E6%B0%B4"><span class="toc-text">3.浇水</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-%E6%B9%BF%E5%BA%A6"><span class="toc-text">4.湿度</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-%E6%96%BD%E8%82%A5"><span class="toc-text">5.施肥</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-%E5%8F%82%E8%80%83%E7%BD%91%E7%AB%99"><span class="toc-text">6.参考网站</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%A2%96%E7%8F%8D%E6%A4%B0%E5%AD%90"><span class="toc-text">袖珍椰子</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E6%A6%95%E6%A0%91%E5%85%BB%E6%AE%96%E7%9A%84%E5%9C%9F%E5%A3%A4%E9%80%89%E6%8B%A9-1"><span class="toc-text">1.榕树养殖的土壤选择</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E6%A6%95%E6%A0%91%E5%85%BB%E6%AE%96%E7%9A%84%E6%B5%87%E6%B0%B4%E6%96%B9%E6%B3%95"><span class="toc-text">2.榕树养殖的浇水方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-%E6%A6%95%E6%A0%91%E5%85%BB%E6%AE%96%E7%9A%84%E5%85%89%E7%85%A7%E8%A6%81%E6%B1%82"><span class="toc-text">3.榕树养殖的光照要求</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-%E5%8F%82%E8%80%83%E7%BD%91%E7%AB%99"><span class="toc-text">4.参考网站</span></a></li></ol></li></ol>
+      </div>
+    </article>
+  
+  
+  <article class="card card-content categories-widget">
+    <div class="categories-card">
+  <div class="categories-header">
+    <i 
+      class="iconfont icon-fenlei" 
+      style="padding-right: 2px;">
+    </i>分类
+  </div>
+  <div class="categories-list">
+    
+      <a href="/categories/blog%E6%90%AD%E5%BB%BA/">
+        <div class="categories-list-item">
+          blog搭建
+          <span class="categories-list-item-badge">1</span>
+        </div>
+      </a>
+    
+      <a href="/categories/%E6%B5%81%E5%AA%92%E4%BD%93%E6%9C%8D%E5%8A%A1%E5%99%A8%E6%90%AD%E5%BB%BA/">
+        <div class="categories-list-item">
+          流媒体服务器搭建
+          <span class="categories-list-item-badge">1</span>
+        </div>
+      </a>
+    
+      <a href="/categories/%E6%96%B0%E7%89%88%E6%A0%87%E5%87%86%E6%97%A5%E6%9C%AC%E8%AF%AD%E5%88%9D%E7%BA%A7/">
+        <div class="categories-list-item">
+          新版标准日本语初级
+          <span class="categories-list-item-badge">1</span>
+        </div>
+      </a>
+    
+      <a href="/categories/%E6%97%A5%E8%AF%AD%E7%94%9F%E8%AF%8D%E8%A1%A8/">
+        <div class="categories-list-item">
+          日语生词表
+          <span class="categories-list-item-badge">6</span>
+        </div>
+      </a>
+    
+      <a href="/categories/%E6%A4%8D%E7%89%A9%E8%82%B2%E7%A7%8D%E6%89%8B%E5%86%8C/">
+        <div class="categories-list-item">
+          植物育种手册
+          <span class="categories-list-item-badge">1</span>
+        </div>
+      </a>
+    
+  </div>
+</div>
+  </article>
+  
+  <article class="card card-content tags-widget">
+    <div class="tags-card">
+  <div class="tags-header">
+    <i 
+      class="iconfont icon-biaoqian" 
+      style="padding-right: 2px;">
+    </i>热门标签
+  </div>
+  <div class="tags-list">
+    
+      <a 
+        href="/tags/hexo/" 
+        title="hexo">
+        <div class="tags-list-item">hexo</div>
+      </a>
+    
+      <a 
+        href="/tags/kaze/" 
+        title="kaze">
+        <div class="tags-list-item">kaze</div>
+      </a>
+    
+      <a 
+        href="/tags/nginx/" 
+        title="nginx">
+        <div class="tags-list-item">nginx</div>
+      </a>
+    
+      <a 
+        href="/tags/ffmpeg/" 
+        title="ffmpeg">
+        <div class="tags-list-item">ffmpeg</div>
+      </a>
+    
+      <a 
+        href="/tags/jp-study/" 
+        title="jp-study">
+        <div class="tags-list-item">jp-study</div>
+      </a>
+    
+      <a 
+        href="/tags/jp-word/" 
+        title="jp-word">
+        <div class="tags-list-item">jp-word</div>
+      </a>
+    
+      <a 
+        href="/tags/plant/" 
+        title="plant">
+        <div class="tags-list-item">plant</div>
+      </a>
+    
+  </div>
+</div>
+  </article>
+  
+  
+</div>
+            </aside>
+            <aside class="right-column">
+              <div class="sticky-widescreen">
+  
+  
+    <article class="card card-content toc-card">
+      <div class="toc-header">
+  <i 
+    class="iconfont icon-menu" 
+    style="padding-right: 2px;">
+  </i>目录
+</div>
+<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AD%A6%E4%B9%A0%E7%BD%91%E7%AB%99%EF%BC%9A"><span class="toc-text">学习网站：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A6%95%E6%A0%91"><span class="toc-text">榕树</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E6%A6%95%E6%A0%91%E5%85%BB%E6%AE%96%E7%9A%84%E5%9C%9F%E5%A3%A4%E9%80%89%E6%8B%A9"><span class="toc-text">1.榕树养殖的土壤选择</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E6%A6%95%E6%A0%91%E5%85%BB%E6%AE%96%E7%9A%84%E6%96%BD%E8%82%A5%E6%96%B9%E6%B3%95"><span class="toc-text">2.榕树养殖的施肥方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-%E6%A6%95%E6%A0%91%E5%85%BB%E6%AE%96%E7%9A%84%E6%B5%87%E6%B0%B4%E6%96%B9%E6%B3%95"><span class="toc-text">3.榕树养殖的浇水方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-%E6%A6%95%E6%A0%91%E5%85%BB%E6%AE%96%E7%9A%84%E5%85%89%E7%85%A7%E8%A6%81%E6%B1%82"><span class="toc-text">4.榕树养殖的光照要求</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-%E6%A6%95%E6%A0%91%E5%85%BB%E6%AE%96%E7%9A%84%E7%9B%86%E6%99%AF%E9%80%A0%E5%9E%8B%E6%96%B9%E6%B3%95"><span class="toc-text">5.榕树养殖的盆景造型方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-%E6%A6%95%E6%A0%91%E5%85%BB%E6%AE%96%E7%9A%84%E7%BF%BB%E7%9B%86%E6%96%B9%E6%B3%95"><span class="toc-text">6.榕树养殖的翻盆方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#7-%E6%A6%95%E6%A0%91%E5%85%BB%E6%AE%96%E7%9A%84%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9"><span class="toc-text">7.榕树养殖的注意事项</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#8-%E6%A6%95%E6%A0%91%E5%85%BB%E6%AE%96%E7%9A%84%E7%B9%81%E6%AE%96%E6%96%B9%E6%B3%95"><span class="toc-text">8.榕树养殖的繁殖方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#9-%E6%A6%95%E6%A0%91%E5%85%BB%E6%AE%96%E7%9A%84%E7%97%85%E8%99%AB%E5%AE%B3%E9%98%B2%E6%B2%BB%E6%96%B9%E6%B3%95"><span class="toc-text">9.榕树养殖的病虫害防治方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#10-%E6%A6%95%E6%A0%91%E5%AB%A9%E5%8F%B6%E4%B8%BA%E4%BD%95%E6%9E%AF%E7%84%A6%E5%8D%B7%E6%9B%B2"><span class="toc-text">10.榕树嫩叶为何枯焦卷曲?</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#11-%E5%8F%82%E8%80%83%E7%BD%91%E7%AB%99"><span class="toc-text">11.参考网站</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%90%BC%E8%B7%9D%E8%8A%B1"><span class="toc-text">萼距花</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E6%B8%A9%E5%BA%A6"><span class="toc-text">1.温度</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E5%85%89%E7%85%A7"><span class="toc-text">2.光照</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-%E6%B5%87%E6%B0%B4"><span class="toc-text">3.浇水</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-%E6%B9%BF%E5%BA%A6"><span class="toc-text">4.湿度</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-%E6%96%BD%E8%82%A5"><span class="toc-text">5.施肥</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-%E5%8F%82%E8%80%83%E7%BD%91%E7%AB%99"><span class="toc-text">6.参考网站</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%A2%96%E7%8F%8D%E6%A4%B0%E5%AD%90"><span class="toc-text">袖珍椰子</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E6%A6%95%E6%A0%91%E5%85%BB%E6%AE%96%E7%9A%84%E5%9C%9F%E5%A3%A4%E9%80%89%E6%8B%A9-1"><span class="toc-text">1.榕树养殖的土壤选择</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E6%A6%95%E6%A0%91%E5%85%BB%E6%AE%96%E7%9A%84%E6%B5%87%E6%B0%B4%E6%96%B9%E6%B3%95"><span class="toc-text">2.榕树养殖的浇水方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-%E6%A6%95%E6%A0%91%E5%85%BB%E6%AE%96%E7%9A%84%E5%85%89%E7%85%A7%E8%A6%81%E6%B1%82"><span class="toc-text">3.榕树养殖的光照要求</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-%E5%8F%82%E8%80%83%E7%BD%91%E7%AB%99"><span class="toc-text">4.参考网站</span></a></li></ol></li></ol>
+    </article>
+  
+  
+  <article class="card card-content">
+    <div class="recent-posts-card">
+  <div class="recent-posts-header">
+    <i 
+      class="iconfont icon-wenzhang_huaban" 
+      style="padding-right: 2px;">
+    </i>最近文章
+  </div>
+  <div class="recent-posts-list">
+    
+      <div class="recent-posts-item">
+        <div class="recent-posts-item-title">2021-07-04</div>
+        <a href="/2021/07/04/plant-breeding-manual/"><div class="recent-posts-item-content">植物育种手册</div></a>
+      </div>
+    
+      <div class="recent-posts-item">
+        <div class="recent-posts-item-title">2021-07-03</div>
+        <a href="/2021/07/03/jp-word-%E7%9F%AD%E8%AF%AD/"><div class="recent-posts-item-content">生词表【短语】</div></a>
+      </div>
+    
+      <div class="recent-posts-item">
+        <div class="recent-posts-item-title">2021-07-03</div>
+        <a href="/2021/07/03/jp-word-%E4%B8%93/"><div class="recent-posts-item-content">生词表【专】</div></a>
+      </div>
+    
+      <div class="recent-posts-item">
+        <div class="recent-posts-item-title">2021-07-03</div>
+        <a href="/2021/07/03/jp-word-%E5%8F%B9/"><div class="recent-posts-item-content">生词表【叹】</div></a>
+      </div>
+    
+  </div>
+</div>
+  </article>
+  
+  
+</div>
+            </aside>
+          </div>
+        </div>
+      </div>
+    </div>
+     
+    <footer class="footer">
+  <div class="footer-container">
+    <div>
+      <div class="footer-dsc">
+        <span>
+          Copyright ©
+          
+            2021 -
+          
+          2021
+        </span>
+        &nbsp;
+        <a 
+          href="/" 
+          class="footer-link">
+          码农充电站
+        </a>
+      </div>
+    </div>
+
+    
+    
+    
+    
+      <div class="footer-dsc">
+        
+          本站总访问量<span id="busuanzi_value_site_pv"></span>次
+        
+        
+          <span>&nbsp;|&nbsp;</span>
+        
+        
+          本站总访客数<span id="busuanzi_value_site_uv"></span>次
+        
+      </div>
+      
+    
+</footer> 
+    
+  <a 
+    role="button" 
+    id="scrollbutton" 
+    class="basebutton" 
+    aria-label="回到顶部">
+    <i class="iconfont icon-arrowleft button-icon"></i>
+  </a>
+
+<a 
+  role="button" 
+  id="menubutton" 
+  class="basebutton">
+  <i class="iconfont icon-menu button-icon"></i>
+</a>
+<a 
+  role="button" 
+  id="popbutton" 
+  class="basebutton" 
+  aria-label="控制中心">
+  <i class="iconfont icon-expand button-icon"></i>
+</a>
+<a 
+  role="button" 
+  id="darkbutton" 
+  class="basebutton darkwidget" 
+  aria-label="夜色模式">
+  <i class="iconfont icon-weather button-icon"></i>
+</a>
+<a 
+  role="button" 
+  id="searchbutton" 
+  class="basebutton searchwidget" 
+  aria-label="搜索">
+  <i class="iconfont icon-search button-icon"></i>
+</a> 
+     
+     
+     
+      <script>
+  var addImgLayout = function () {
+    var img = document.querySelectorAll('.post-content img')
+    var i
+    for (i = 0; i < img.length; i++) {
+      var wrapper = document.createElement('a')
+      wrapper.setAttribute('href', img[i].getAttribute('data-src'))
+      wrapper.setAttribute('aria-label', 'illustration')
+      wrapper.style.cssText =
+        'width: 100%; display: flex; justify-content: center;'
+      if (img[i].alt) wrapper.dataset.caption = img[i].alt
+      wrapper.dataset.nolink = true
+      img[i].before(wrapper)
+      wrapper.append(img[i])
+      var divWrap = document.createElement('div')
+      divWrap.classList.add('gallery')
+      wrapper.before(divWrap)
+      divWrap.append(wrapper)
+    }
+    baguetteBox.run('.gallery')
+  }
+</script>
+<script>
+  loadScript(
+    "/js/lib/lightbox/baguetteBox.min.js",
+    addImgLayout
+  )
+</script>
+ 
+     
+     
+    <script src="/js/main.js"></script> 
+    
+      <script> 
+        loadScript('/js/lib/busuanzi.min.js') 
+      </script>
+     
+    
+      <script>
+        var addLazyload = function () {
+          var observer = lozad('.lozad', {
+            load: function (el) {
+              el.srcset = el.getAttribute('data-src')
+            },
+            loaded: function (el) {
+              el.classList.add('loaded')
+            },
+          })
+          observer.observe()
+        }
+      </script>
+      <script>
+        loadScript('/js/lib/lozad.min.js', addLazyload)
+      </script>
+     
+    
+    
+  </body>
+</html>
