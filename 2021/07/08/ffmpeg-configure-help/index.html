@@ -1,0 +1,757 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+  <meta charset="UTF-8">
+  <meta 
+    name="viewport"
+    content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+  <meta 
+    http-equiv="X-UA-Compatible" 
+    content="ie=edge">
+  <meta 
+    name="theme-color" 
+    content="#fff" 
+    id="theme-color">
+  <meta 
+    name="description" 
+    content="码农充电站">
+  <link 
+    rel="icon" 
+    href="/img/logo.jpg">
+  <title>ffmpeg-编译帮助【翻译】</title>
+  
+    
+      <meta 
+        property="og:title" 
+        content="ffmpeg-编译帮助【翻译】">
+    
+    
+      <meta 
+        property="og:url" 
+        content="https://parischerryblossoms.github.io/2021/07/08/ffmpeg-configure-help/index.html">
+    
+    
+      <meta 
+        property="og:img" 
+        content="/img/logo.jpg">
+    
+    
+    
+      <meta 
+        property="og:type" 
+        content="article">
+      <meta 
+        property="og:article:published_time" 
+        content="2021-07-08">
+      <meta 
+        property="og:article:modified_time" 
+        content="2021-07-08">
+      <meta 
+        property="og:article:author" 
+        content="夜楼">
+      
+        
+          <meta 
+            property="og:article:tag" 
+            content="ffmpeg">
+        
+      
+    
+  
+  <script>
+    function loadScript(url, cb) {
+      var script = document.createElement('script');
+      script.src = url;
+      if (cb) script.onload = cb;
+      script.async = true;
+      document.body.appendChild(script);
+    }
+    function loadCSS(href, data, attr) {
+      var sheet = document.createElement('link');
+      sheet.ref = 'stylesheet';
+      sheet.href = href;
+      sheet.dataset[data] = attr;
+      document.head.appendChild(sheet);
+    }
+    function changeCSS(cssFile, data, attr) {
+      var oldlink = document.querySelector(data);
+      var newlink = document.createElement("link");
+      newlink.setAttribute("rel", "stylesheet");
+      newlink.setAttribute("href", cssFile);
+      newlink.dataset.prism = attr;
+      document.head.replaceChild(newlink, oldlink);
+    }
+  </script>
+  
+    
+  
+  <script>
+    // control reverse button
+    var reverseDarkList = {
+      dark: 'light',
+      light: 'dark'
+    };
+    var themeColor = {
+      dark: '#1c1c1e',
+      light: '#fff'
+    }
+    // get the data of css prefers-color-scheme
+    var getCssMediaQuery = function() {
+      return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+    };
+    // reverse current darkmode setting function
+    var reverseDarkModeSetting = function() {
+      var setting = localStorage.getItem('user-color-scheme');
+      if(reverseDarkList[setting]) {
+        setting = reverseDarkList[setting];
+      } else if(setting === null) {
+        setting = reverseDarkList[getCssMediaQuery()];
+      } else {
+        return;
+      }
+      localStorage.setItem('user-color-scheme', setting);
+      return setting;
+    };
+    // apply current darkmode setting
+  </script>
+  
+    <script>
+      var setDarkmode = function(mode) {
+      var setting = mode || localStorage.getItem('user-color-scheme');
+      if(setting === getCssMediaQuery()) {
+        document.documentElement.removeAttribute('data-user-color-scheme');
+        localStorage.removeItem('user-color-scheme');
+        document.getElementById('theme-color').content = themeColor[setting];
+        document.getElementById('theme-color').dataset.mode = setting;
+      } else if(reverseDarkList[setting]) {
+        document.documentElement.setAttribute('data-user-color-scheme', setting);
+        document.getElementById('theme-color').content = themeColor[setting];
+        document.getElementById('theme-color').dataset.mode = setting;
+      } else {
+        document.documentElement.removeAttribute('data-user-color-scheme');
+        localStorage.removeItem('user-color-scheme');
+        document.getElementById('theme-color').content = themeColor[getCssMediaQuery()];
+        document.getElementById('theme-color').dataset.mode = getCssMediaQuery();
+      }
+    };
+    setDarkmode();
+    </script>
+  
+  
+  <link rel="preload" href="//at.alicdn.com/t/font_1946621_i1kgafibvw.css" as="style" >
+  <link rel="preload" href="//at.alicdn.com/t/font_1952792_89b4ac4k4up.css" as="style" >
+  
+  
+    <link rel="preload" href="/js/lib/lightbox/baguetteBox.min.js" as="script">
+    <link rel="preload" href="/js/lib/lightbox/baguetteBox.min.css" as="style" >
+  
+  
+    <link rel="preload" href="/js/lib/lozad.min.js" as="script">
+  
+  
+  
+  
+  
+  
+  
+  <link rel="stylesheet" href="/css/main.css">
+  
+  <link rel="stylesheet" href="//at.alicdn.com/t/font_1946621_i1kgafibvw.css">
+    <link rel="stylesheet" href="/iconfont/iconfont.css">
+  
+  <link rel="stylesheet" href="//at.alicdn.com/t/font_1952792_89b4ac4k4up.css">
+  
+    <link rel="stylesheet" href="/js/lib/lightbox/baguetteBox.min.css">
+  
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+  <body>
+    <div class="wrapper">
+       
+      <nav class="navbar">
+  <div class="navbar-logo">
+    <span class="navbar-logo-main">
+      
+        <img 
+          class="navbar-logo-img" 
+          src="/img/logo.jpg" 
+          alt="blog logo">
+      
+      <span class="navbar-logo-dsc">码农充电站</span>
+    </span>
+  </div>
+  <div class="navbar-menu">
+    
+      <a 
+        href="/" 
+        class="navbar-menu-item">
+        
+          首页
+        
+      </a>
+    
+      <a 
+        href="/archives" 
+        class="navbar-menu-item">
+        
+          归档
+        
+      </a>
+    
+      <a 
+        href="/tags" 
+        class="navbar-menu-item">
+        
+          标签
+        
+      </a>
+    
+      <a 
+        href="/categories" 
+        class="navbar-menu-item">
+        
+          分类
+        
+      </a>
+    
+      <a 
+        href="/about" 
+        class="navbar-menu-item">
+        
+          关于
+        
+      </a>
+    
+      <a 
+        href="/links" 
+        class="navbar-menu-item">
+        
+          友链
+        
+      </a>
+    
+    <a 
+      class="navbar-menu-item darknavbar" 
+      id="dark">
+      <i class="iconfont icon-weather"></i>
+    </a>
+    <a 
+      class="navbar-menu-item searchnavbar" 
+      id="search">
+      <i 
+        class="iconfont icon-search" 
+        style="font-size: 1.2rem; font-weight: 400;">
+      </i>
+    </a>
+  </div>
+</nav> 
+      
+      <div 
+        id="local-search" 
+        style="display: none">
+        <input
+          class="navbar-menu-item"
+          id="search-input"
+          placeholder="请输入搜索内容..." />
+        <div id="search-content"></div>
+      </div>
+      
+      <div class="section-wrap">
+        <div class="container">
+          <div class="columns">
+            <main class="main-column">
+<article class="card card-content">
+  <header>
+    <h1 class="post-title">
+      ffmpeg-编译帮助【翻译】
+    </h1>
+  </header>
+  <div class="post-meta post-show-meta">
+    <time datetime="2021-07-08T15:04:36.000Z">
+      <i 
+        class="iconfont icon-calendar" 
+        style="margin-right: 2px;">
+      </i>
+      <span>2021-07-08</span>
+    </time>
+    
+      <span class="dot"></span>
+      
+        <a 
+          href="/categories/%E6%B5%81%E5%AA%92%E4%BD%93/" 
+          class="post-meta-link">
+          流媒体
+        </a>
+      
+    
+    
+      <span class="dot"></span>
+      <span>4.4k 字</span>
+    
+  </div>
+  
+    <div 
+      class="post-meta post-show-meta" 
+      style="margin-top: -10px;">
+      <div style="display: flex; align-items: center;">
+        <i 
+          class="iconfont icon-biaoqian" 
+          style="margin-right: 2px; font-size: 1.15rem;">
+        </i>
+        
+          
+          <a 
+            href="/tags/ffmpeg/" 
+            class="post-meta-link">
+            ffmpeg
+          </a>
+        
+      </div>
+    </div>
+  
+  </header>
+  <div 
+    id="section" 
+    class="post-content">
+    <pre class="highlight"><span class="line">Usage: configure [options]</span><br><span class="line">Options: [defaults in brackets after descriptions]</span><br><span class="line"></span><br><span class="line">Help options:              # 帮助选项：</span><br><span class="line">  --help                   #  打印此消息</span><br><span class="line">  --quiet                  #  禁止显示信息输出</span><br><span class="line">  --list-decoders          #  显示所有可用的解码器</span><br><span class="line">  --list-encoders          #  显示所有可用的编码器</span><br><span class="line">  --list-hwaccels          #  显示所有可用的硬件加速器</span><br><span class="line">  --list-demuxers          #  显示所有可用的分路器</span><br><span class="line">  --list-muxers            #  显示所有可用的复用器</span><br><span class="line">  --list-parsers           #  显示所有可用的解析器</span><br><span class="line">  --list-protocols         #  显示所有可用的协议</span><br><span class="line">  --list-bsfs              #  显示所有可用的比特流过滤器</span><br><span class="line">  --list-indevs            #  显示所有可用的输入设备</span><br><span class="line">  --list-outdevs           #  显示所有可用的输出设备</span><br><span class="line">  --list-filters           #  显示所有可用的过滤器</span><br><span class="line"></span><br><span class="line">Standard options:          # 标准选项：</span><br><span class="line">  --logfile=FILE           #  记录测试并输出到FILE [ffbuild/config.log]</span><br><span class="line">  --disable-logging        #  不记录配置调试信息</span><br><span class="line">  --fatal-warnings         #  如果生成任何配置警告，则失败</span><br><span class="line">  --prefix=PREFIX          #  在前缀中安装 [/usr/local]</span><br><span class="line">  --bindir=DIR             #  在DIR中安装二进制文件 [PREFIX/bin]</span><br><span class="line">  --datadir=DIR            #  在DIR中安装数据文件 [PREFIX/share/ffmpeg]</span><br><span class="line">  --docdir=DIR             #  在DIR中安装文档 [PREFIX/share/doc/ffmpeg]</span><br><span class="line">  --libdir=DIR             #  在DIR中安装库 [PREFIX/lib]</span><br><span class="line">  --shlibdir=DIR           #  在DIR 中安装共享库 [LIBDIR]</span><br><span class="line">  --incdir=DIR             #  在DIR中安装包含 [PREFIX/include]</span><br><span class="line">  --mandir=DIR             #  在DIR中安装手册页 [PREFIX/share/man]</span><br><span class="line">  --pkgconfigdir=DIR       #  在DIR中安装pkg-config文件 [LIBDIR/pkgconfig]</span><br><span class="line">  --enable-rpath           #  使用rpath允许在不属于动态链接器搜索路径的路径中安装库链接程序时使用rpath（谨慎使用）</span><br><span class="line">  --install-name-dir=DIR   #  已安装目标的 Darwin 目录名称</span><br><span class="line"></span><br><span class="line">Licensing options:         # 许可选项：</span><br><span class="line">  --enable-gpl             #  允许使用 GPL 代码，生成的库</span><br><span class="line">                           #  并且二进制文件将遵循GPL [no]</span><br><span class="line">  --enable-version3        #  将(L)GPL升级到版本3 [no]</span><br><span class="line">  --enable-nonfree         #  允许使用非自由代码，生成的库和二进制文件将不可再分发 [no]</span><br><span class="line"></span><br><span class="line">Configuration options:     # 配置选项：</span><br><span class="line">  --disable-static         # 不构建静态库 [no]</span><br><span class="line">  --enable-shared          #  构建共享库 [no]</span><br><span class="line">  --enable-small           #  优化大小而不是速度</span><br><span class="line">  --disable-runtime-cpudetect #  禁用在运行时检测CPU功能（较小的二进制文件）</span><br><span class="line">  --enable-gray            #  启用全灰度支持（较慢的颜色）</span><br><span class="line">  --disable-swscale-alpha  #  在swscale中禁用alpha通道支持</span><br><span class="line">  --disable-all            #  禁用构建组件、库和程序</span><br><span class="line">  --disable-autodetect     #  禁用自动检测到的外部库 [no]</span><br><span class="line"></span><br><span class="line">Program options:           # 程序选项：</span><br><span class="line">  --disable-programs       #  不要构建命令行程序</span><br><span class="line">  --disable-ffmpeg         #  禁用ffmpeg构建</span><br><span class="line">  --disable-ffplay         #  禁用ffplay构建</span><br><span class="line">  --disable-ffprobe        #  禁用ffprobe构建</span><br><span class="line"></span><br><span class="line">Documentation options:     # 文档选项：</span><br><span class="line">  --disable-doc            #  不要构建文档</span><br><span class="line">  --disable-htmlpages      #  不要构建HTML文档页面</span><br><span class="line">  --disable-manpages       #  不要构建man文档页面</span><br><span class="line">  --disable-podpages       #  不构建POD 文档页面</span><br><span class="line">  --disable-txtpages       #  不要构建文本文档页面</span><br><span class="line"></span><br><span class="line">Component options:         # 组件选项：</span><br><span class="line">  --disable-avdevice       #  禁用libavdevice构建</span><br><span class="line">  --disable-avcodec        #  禁用libavcodec构建</span><br><span class="line">  --disable-avformat       #  禁用libavformat构建</span><br><span class="line">  --disable-swresample     #  禁用libswresample构建</span><br><span class="line">  --disable-swscale        #  禁用libswscale构建</span><br><span class="line">  --disable-postproc       #  禁用libpostproc构建</span><br><span class="line">  --disable-avfilter       #  禁用libavfilter构建</span><br><span class="line">  --disable-pthreads       #  禁用线程 [autodetect]</span><br><span class="line">  --disable-w32threads     #  禁用Win32线程 [autodetect]</span><br><span class="line">  --disable-os2threads     #  禁用OS/2线程 [autodetect]</span><br><span class="line">  --disable-network        #  禁用网络支持 [no]</span><br><span class="line">  --disable-dct            #  禁用DCT代码</span><br><span class="line">  --disable-dwt            #  禁用DWT代码</span><br><span class="line">  --disable-error-resilience #  禁用错误恢复代码</span><br><span class="line">  --disable-lsp            #  禁用LSP代码</span><br><span class="line">  --disable-lzo            #  禁用LZO解码器代码</span><br><span class="line">  --disable-mdct           #  禁用MDCT代码</span><br><span class="line">  --disable-rdft           #  禁用RDFT代码</span><br><span class="line">  --disable-fft            #  禁用FFT代码</span><br><span class="line">  --disable-faan           #  禁用浮点AAN (I)DCT代码</span><br><span class="line">  --disable-pixelutils     #  在 libavutil 中禁用像素实用程序</span><br><span class="line"></span><br><span class="line">Individual component options: # 单个组件选项：</span><br><span class="line">  --disable-everything     #  禁用下面列出的所有组件</span><br><span class="line">  --disable-encoder=NAME   #  禁用编码器名称</span><br><span class="line">  --enable-encoder=NAME    #  启用编码器名称</span><br><span class="line">  --disable-encoders       #  禁用所有编码器</span><br><span class="line">  --disable-decoder=NAME   #  禁用解码器名称</span><br><span class="line">  --enable-decoder=NAME    #  启用解码器名称</span><br><span class="line">  --disable-decoders       #  禁用所有解码器</span><br><span class="line">  --disable-hwaccel=NAME   #  禁用hwaccel名称</span><br><span class="line">  --enable-hwaccel=NAME    #  启用hwaccel名称</span><br><span class="line">  --disable-hwaccels       #  禁用所有hwaccels</span><br><span class="line">  --disable-muxer=NAME     #  禁用多路复用器名称</span><br><span class="line">  --enable-muxer=NAME      #  启用多路复用器名称</span><br><span class="line">  --disable-muxers         #  禁用所有多路复用器</span><br><span class="line">  --disable-demuxer=NAME   #  禁用多路分配器名称</span><br><span class="line">  --enable-demuxer=NAME    #  启用分路器名称</span><br><span class="line">  --disable-demuxers       #  禁用所有分路器</span><br><span class="line">  --enable-parser=NAME     #  启用解析器名称</span><br><span class="line">  --disable-parser=NAME    #  禁用解析器名称</span><br><span class="line">  --disable-parsers        #  禁用所有解析器</span><br><span class="line">  --enable-bsf=NAME        #  启用比特流过滤器名称</span><br><span class="line">  --disable-bsf=NAME       #  禁用比特流过滤器名称</span><br><span class="line">  --disable-bsfs           #  禁用所有比特流过滤器</span><br><span class="line">  --enable-protocol=NAME   #  启用协议名称</span><br><span class="line">  --disable-protocol=NAME  #  禁用协议名称</span><br><span class="line">  --disable-protocols      #  禁用所有协议</span><br><span class="line">  --enable-indev=NAME      #  启用输入设备名称</span><br><span class="line">  --disable-indev=NAME     #  禁用输入设备名称</span><br><span class="line">  --disable-indevs         #  禁用输入设备</span><br><span class="line">  --enable-outdev=NAME     #  启用输出设备名称</span><br><span class="line">  --disable-outdev=NAME    #  禁用输出设备名称</span><br><span class="line">  --disable-outdevs        #  禁用输出设备</span><br><span class="line">  --disable-devices        #  禁用所有设备</span><br><span class="line">  --enable-filter=NAME     #  启用过滤器名称</span><br><span class="line">  --disable-filter=NAME    #  禁用过滤器名称</span><br><span class="line">  --disable-filters        #  禁用所有过滤器</span><br><span class="line"></span><br><span class="line">External library support:  # 外部库支持：</span><br><span class="line"></span><br><span class="line">  使用以下任何开关将允许 FFmpeg 链接到相应的外部库。如果满足所有其他依赖项并且未明确禁用它们，则依赖该库的所有组件都将启用。</span><br><span class="line">  例如： --enable-libopus 将启用与libopus的链接并允许构建libopus编码器，除非使用 --disable-encoder=libopus 专门禁用它。</span><br><span class="line"></span><br><span class="line">  请注意，仅自动检测系统库。 必须显式启用所有其他外部库。</span><br><span class="line"></span><br><span class="line">  另请注意，以下帮助文本描述了库本身的用途，并非它们的所有功能都必须由FFmpeg使用。</span><br><span class="line"></span><br><span class="line">  --disable-alsa           #  禁用ALSA支持 [autodetect]</span><br><span class="line">  --disable-appkit         #  禁用AppleAppKit 框架 [autodetect]</span><br><span class="line">  --disable-avfoundation   #  禁用Apple AVFoundation框架 [autodetect]</span><br><span class="line">  --enable-avisynth        #  启用读取AviSynth脚本文件 [no]</span><br><span class="line">  --disable-bzlib          #  禁用bzlib [autodetect]</span><br><span class="line">  --disable-coreimage      #  禁用Apple CoreImage框架 [autodetect]</span><br><span class="line">  --enable-chromaprint     #  使用chromaprint启用音频指纹 [no]</span><br><span class="line">  --enable-frei0r          #  启用 frei0r 视频过滤 [no]</span><br><span class="line">  --enable-gcrypt          #  启用gcrypt，如果未使用openssl、librtmp或gmp，则需要rtmp（t）e支持 [no]</span><br><span class="line">  --enable-gmp             #  启用gmp，如果不使用openssl或librtmp，则需要rtmp（t）e支持 [no]</span><br><span class="line">  --enable-gnutls          #  如果未使用openssl、libtls或mbedtls，则启用https支持所需的gnutls [no]</span><br><span class="line">  --disable-iconv          #  禁用iconv [autodetect]</span><br><span class="line">  --enable-jni             #  启用JNI支持 [no]</span><br><span class="line">  --enable-ladspa          #  启用音频过滤 [no]</span><br><span class="line">  --enable-libaom          #  通过libaom启用AV1视频编码/解码 [no]</span><br><span class="line">  --enable-libaribb24      #  通过libaribb24启用ARIB文本和标题解码 [no]</span><br><span class="line">  --enable-libass          #  启用libass字幕呈现，需要字幕和ass过滤器 [no]</span><br><span class="line">  --enable-libbluray       #  使用libbluray启用BluRay读取 [no]</span><br><span class="line">  --enable-libbs2b         #  启用bs2b DSP库 [no]</span><br><span class="line">  --enable-libcaca         #  使用libcaca启用文本显示 [no]</span><br><span class="line">  --enable-libcelt         #  通过libcelt启用CELT解码 [no]</span><br><span class="line">  --enable-libcdio         #  使用libcdio启用音频CD抓取 [no]</span><br><span class="line">  --enable-libcodec2       #  启用编解码器2 en/使用libcodec 2解码 [no]</span><br><span class="line">  --enable-libdav1d        #  通过libdav1d启用AV1解码 [no]</span><br><span class="line">  --enable-libdavs2        #  通过libdavs2启用AVS2解码 [no]</span><br><span class="line">  --enable-libdc1394       #  使用libdc1394和libraw1394启用IIDC-1394抓取 [no]</span><br><span class="line">  --enable-libfdk-aac      #  通过libfdk AAC启用AAC de/encoding [no]</span><br><span class="line">  --enable-libflite        #  通过libflite启用flite（语音合成）支持 [no]</span><br><span class="line">  --enable-libfontconfig   #  启用libfontconfig，对drawtext筛选器很有用 [no]</span><br><span class="line">  --enable-libfreetype     #  启用libfreetype，drawtext筛选器需要 [no]</span><br><span class="line">  --enable-libfribidi      #  启用libfribidi，改进drawtext过滤器 [no]</span><br><span class="line">  --enable-libglslang      #  通过libglslang启用GLSL-&gt;SPIRV编译 [no]</span><br><span class="line">  --enable-libgme          #  通过libgme启用游戏音乐Emu [no]</span><br><span class="line">  --enable-libgsm          #  通过libgsm启用GSM de/encoding [no]</span><br><span class="line">  --enable-libiec61883     #  通过libiec61883启用iec61883 [no]</span><br><span class="line">  --enable-libilbc         #  通过libilbc启用iLBC de/encoding [no]</span><br><span class="line">  --enable-libjack         #  启用音频服务器 [no]</span><br><span class="line">  --enable-libklvanc       #  启用内核实验室VANC处理 [no]</span><br><span class="line">  --enable-libkvazaar      #  通过libkvazar启用HEVC编码 [no]</span><br><span class="line">  --enable-liblensfun      #  启用镜头镜头校正 [no]</span><br><span class="line">  --enable-libmodplug      #  通过libmodplug启用ModPlug [no]</span><br><span class="line">  --enable-libmp3lame      #  通过libmp3lame启用MP3编码 [no]</span><br><span class="line">  --enable-libopencore-amrnb #  通过libopencore amrnb启用AMR-NB de/encoding [no]</span><br><span class="line">  --enable-libopencore-amrwb #  通过libopencore amrwb启用AMR-WB解码 [no]</span><br><span class="line">  --enable-libopencv       #  通过libopencv启用视频过滤 [no]</span><br><span class="line">  --enable-libopenh264     #  通过OpenH264启用H.264编码 [no]</span><br><span class="line">  --enable-libopenjpeg     #  通过OpenJPEG启用JPEG 2000 de/encoding [no]</span><br><span class="line">  --enable-libopenmpt      #  启用通过libopenmpt解码跟踪文件 [no]</span><br><span class="line">  --enable-libopenvino     #  启用OpenVINO作为基于DNN的过滤器（如DNN\u处理）的DNN模块后端 [no]</span><br><span class="line">  --enable-libopus         #  通过libopus启用Opus de/encoding [no]</span><br><span class="line">  --enable-libpulse        #  通过libpulse启用Pulseaudio输入 [no]</span><br><span class="line">  --enable-librabbitmq     #  启用RabbitMQ库 [no]</span><br><span class="line">  --enable-librav1e        #  通过rav1e启用AV1编码 [no]</span><br><span class="line">  --enable-librist         #  通过librist启用RIST [no]</span><br><span class="line">  --enable-librsvg         #  通过librsvg启用SVG光栅化 [no]</span><br><span class="line">  --enable-librubberband   #  启用rubberband筛选器所需的rubberband [no]</span><br><span class="line">  --enable-librtmp         #  通过librtmp启用RTMP[E]支持 [no]</span><br><span class="line">  --enable-libshine        #  通过libshine启用定点MP3编码 [no]</span><br><span class="line">  --enable-libsmbclient    #  通过libsmbclient启用Samba协议 [no]</span><br><span class="line">  --enable-libsnappy       #  启用Snappy压缩，用于hap编码 [no]</span><br><span class="line">  --enable-libsoxr         #  启用包含libsoxr重采样 [no]</span><br><span class="line">  --enable-libspeex        #  通过libspeex启用Speex de/encoding [no]</span><br><span class="line">  --enable-libsrt          #  通过libsrt启用Haivision SRT协议 [no]</span><br><span class="line">  --enable-libssh          #  通过libssh启用SFTP协议 [no]</span><br><span class="line">  --enable-libsvtav1       #  通过SVT启用AV1编码 [no]</span><br><span class="line">  --enable-libtensorflow   #  启用TensorFlow作为基于DNN的过滤器（如sr）的DNN模块后端 [no]</span><br><span class="line">  --enable-libtesseract    #  启用ocr过滤器所需的Tesseract [no]</span><br><span class="line">  --enable-libtheora       #  通过libtheora启用Theora编码 [no]</span><br><span class="line">  --enable-libtls          #  如果未使用openssl、gnutls或mbedtls，则启用https支持所需的LibreSSL（通过libtls） [no]</span><br><span class="line">  --enable-libtwolame      #  通过libtwolame启用MP2编码 [no]</span><br><span class="line">  --enable-libuavs3d       #  通过libuavs3d启用AVS3解码 [no]</span><br><span class="line">  --enable-libv4l2         #  启用libv4l2/v4l utils [no]</span><br><span class="line">  --enable-libvidstab      #  使用vid.stab启用视频稳定 [no]</span><br><span class="line">  --enable-libvmaf         #  通过libvmaf启用vmaf筛选器 [no]</span><br><span class="line">  --enable-libvo-amrwbenc  #  通过libvo amrwbenc启用AMR-WB编码 [no]</span><br><span class="line">  --enable-libvorbis       #  通过libvorbis启用Vorbis en/解码，存在本机实现 [no]</span><br><span class="line">  --enable-libvpx          #  通过libvpx启用VP8和VP9 de/encoding [no]</span><br><span class="line">  --enable-libwebp         #  通过libwebp启用WebP编码 [no]</span><br><span class="line">  --enable-libx264         #  通过x264启用H.264编码 [no]</span><br><span class="line">  --enable-libx265         #  通过x265启用HEVC编码 [no]</span><br><span class="line">  --enable-libxavs         #  通过xavs启用AVS编码 [no]</span><br><span class="line">  --enable-libxavs2        #  通过xavs2启用AVS2编码 [no]</span><br><span class="line">  --enable-libxcb          #  使用XCB启用X11抓取 [autodetect]</span><br><span class="line">  --enable-libxcb-shm      #  启用X11抓取shm通信 [autodetect]</span><br><span class="line">  --enable-libxcb-xfixes   #  启用X11抓取鼠标渲染 [autodetect]</span><br><span class="line">  --enable-libxcb-shape    #  启用X11抓取形状渲染 [autodetect]</span><br><span class="line">  --enable-libxvid         #  通过xvidcore启用Xvid编码，存在本机MPEG-4/Xvid编码器 [no]</span><br><span class="line">  --enable-libxml2         #  使用C库libxml2启用XML解析，这是破折号解组支持所需的 [no]</span><br><span class="line">  --enable-libzimg         #  启用zscale筛选器所需的z.lib [no]</span><br><span class="line">  --enable-libzmq          #  启用通过libzmq传递消息 [no]</span><br><span class="line">  --enable-libzvbi         #  通过libzvbi启用图文电视支持 [no]</span><br><span class="line">  --enable-lv2             #  启用LV2音频过滤 [no]</span><br><span class="line">  --disable-lzma           #  禁用lzma [autodetect]</span><br><span class="line">  --enable-decklink        #  启用Blackmagic DeckLink I/O支持 [no]</span><br><span class="line">  --enable-mbedtls         #  启用mbedTLS，如果未使用openssl、gnutls或libtls，则需要https支持 [no]</span><br><span class="line">  --enable-mediacodec      #  启用Android MediaCodec支持 [no]</span><br><span class="line">  --enable-mediafoundation #  通过MediaFoundation启用编码 [auto]</span><br><span class="line">  --enable-libmysofa       #  启用sofalizer筛选器所需的libmysofa [no]</span><br><span class="line">  --enable-openal          #  启用OpenAL 1.1捕获支持 [no]</span><br><span class="line">  --enable-opencl          #  启用OpenCL处理 [no]</span><br><span class="line">  --enable-opengl          #  启用OpenGL渲染 [no]</span><br><span class="line">  --enable-openssl         #  如果未使用gnutls、libtls或mbedtls，则启用https支持所需的openssl [no]</span><br><span class="line">  --enable-pocketsphinx    #  启用PocketSphinx，asr筛选器需要 [no]</span><br><span class="line">  --disable-sndio          #  禁用sndio支持 [autodetect]</span><br><span class="line">  --disable-schannel       #  如果未使用openssl和gnutls，则禁用Windows上TLS支持所需的SChannel SSP [autodetect]</span><br><span class="line">  --disable-sdl2           #  禁用sdl2 [autodetect]</span><br><span class="line">  --disable-securetransport #  如果未使用openssl和gnutls，则禁用OSX上TLS支持所需的安全传输 [autodetect]</span><br><span class="line">  --enable-vapoursynth     #  启用VapourSynth解复用器 [no]</span><br><span class="line">  --enable-vulkan          #  启用Vulkan代码 [no]</span><br><span class="line">  --disable-xlib           #  禁用xlib [autodetect]</span><br><span class="line">  --disable-zlib           #  禁用zlib [autodetect]</span><br><span class="line"></span><br><span class="line">  The following libraries provide various hardware acceleration features: # 以下库提供了各种硬件加速功能：</span><br><span class="line">  --disable-amf            #  禁用AMF视频编码 [autodetect]</span><br><span class="line">  --disable-audiotoolbox   #  禁用Apple AudioToolbox代码 [autodetect]</span><br><span class="line">  --enable-cuda-nvcc       #  启用Nvidia CUDA编译器 [no]</span><br><span class="line">  --disable-cuda-llvm      #  使用clang禁用CUDA编译 [autodetect]</span><br><span class="line">  --disable-cuvid          #  禁用Nvidia CUVID支持 [autodetect]</span><br><span class="line">  --disable-d3d11va        #  禁用Microsoft Direct3D 11视频加速代码 [autodetect]</span><br><span class="line">  --disable-dxva2          #  禁用Microsoft DirectX 9视频加速代码 [autodetect]</span><br><span class="line">  --disable-ffnvcodec      #  禁用动态链接的Nvidia代码 [autodetect]</span><br><span class="line">  --enable-libdrm          #  启用DRM代码（Linux） [no]</span><br><span class="line">  --enable-libmfx          #  通过libmfx启用Intel MediaSDK（又称快速同步视频）代码 [no]</span><br><span class="line">  --enable-libnpp          #  启用基于Nvidia性能原语的代码 [no]</span><br><span class="line">  --enable-mmal            #  通过MMAL启用Broadcom多媒体抽象层（Raspberry Pi） [no]</span><br><span class="line">  --disable-nvdec          #  禁用Nvidia视频解码加速（通过hwaccel） [autodetect]</span><br><span class="line">  --disable-nvenc          #  禁用Nvidia视频编码 [autodetect]</span><br><span class="line">  --enable-omx             #  启用OpenMAX IL代码 [no]</span><br><span class="line">  --enable-omx-rpi         #  为Raspberry Pi启用OpenMAX IL代码 [no]</span><br><span class="line">  --enable-rkmpp           #  启用Rockchip媒体处理平台代码 [no]</span><br><span class="line">  --disable-v4l2-m2m       #  禁用V4L2 mem2mem代码 [autodetect]</span><br><span class="line">  --disable-vaapi          #  禁用视频加速API（主要是Unix/Intel）代码 [autodetect]</span><br><span class="line">  --disable-vdpau          #  禁用Unix代码的Nvidia视频解码和演示API [autodetect]</span><br><span class="line">  --disable-videotoolbox   #  禁用VideoToolbox代码 [autodetect]</span><br><span class="line"></span><br><span class="line">Toolchain options:         # 工具链选项：</span><br><span class="line">  --arch=ARCH              #  选择体系结构 []</span><br><span class="line">  --cpu=CPU                #  选择所需的最小CPU（影响指令选择，可能在较旧的CPU上崩溃）</span><br><span class="line">  --cross-prefix=PREFIX    #  为编译工具使用前缀 []</span><br><span class="line">  --progs-suffix=SUFFIX    #  程序名后缀 []</span><br><span class="line">  --enable-cross-compile   #  假设使用了交叉编译器</span><br><span class="line">  --sysroot=PATH           #  交叉构建树的根</span><br><span class="line">  --sysinclude=PATH        #  交叉生成系统标头的位置</span><br><span class="line">  --target-os=OS           #  编译器目标操作系统 []</span><br><span class="line">  --target-exec=CMD        #  命令在目标上运行可执行文件</span><br><span class="line">  --target-path=DIR        #  目标上生成目录的视图路径</span><br><span class="line">  --target-samples=DIR     #  目标上samples目录的路径</span><br><span class="line">  --tempprefix=PATH        #  强制固定目录/前缀而不是mktemp进行检查</span><br><span class="line">  --toolchain=NAME         #  根据名称设置工具默认值（gcc asan、clang asan、gcc msan、clang msan、gcc tsan、clang tsan、gcc usan、clang usan、valgrind massif、valgrind memcheck、msvc、icl、gcov、llvm cov、harded）</span><br><span class="line">  --nm=NM                  #  使用nm工具nm [nm -g]</span><br><span class="line">  --ar=AR                  #  使用存档工具配置总成 [ar]</span><br><span class="line">  --as=AS                  #  将汇编程序用作 []</span><br><span class="line">  --ln_s=LN_S              #  使用符号链接工具 [ln -s -f]</span><br><span class="line">  --strip=STRIP            #  使用工具条工具条 [strip]</span><br><span class="line">  --windres=WINDRES        #  使用windows资源编译器WINDRES [windres]</span><br><span class="line">  --x86asmexe=EXE          #  使用nasm兼容的汇编程序EXE [nasm]</span><br><span class="line">  --cc=CC                  #  使用C编译器CC [gcc]</span><br><span class="line">  --cxx=CXX                #  使用C编译器CXX [g++]</span><br><span class="line">  --objcc=OCC              #  使用ObjC编译器 [gcc]</span><br><span class="line">  --dep-cc=DEPCC           #  使用依赖生成器DEPCC [gcc]</span><br><span class="line">  --nvcc=NVCC              #  使用Nvidia CUDA编译器NVCC或clang []</span><br><span class="line">  --ld=LD                  #  使用链接器LD []</span><br><span class="line">  --pkg-config=PKGCONFIG   #  使用pkg配置工具PKGCONFIG [pkg-config]</span><br><span class="line">  --pkg-config-flags=FLAGS #  将其他标志传递给pkgconf []</span><br><span class="line">  --ranlib=RANLIB          #  使用ranlib ranlib [ranlib]</span><br><span class="line">  --doxygen=DOXYGEN        #  使用DOXYGEN生成API文档 [doxygen]</span><br><span class="line">  --host-cc=HOSTCC         #  使用主机C编译器HOSTCC</span><br><span class="line">  --host-cflags=HCFLAGS    #  为主机编译时使用HCFLAGS</span><br><span class="line">  --host-cppflags=HCPPFLAGS #  为主机编译时使用HCPPFLAGS</span><br><span class="line">  --host-ld=HOSTLD         #  使用主机链接器HOSTLD</span><br><span class="line">  --host-ldflags=HLDFLAGS  #  为主机链接时使用HLDFLAGS</span><br><span class="line">  --host-extralibs=HLIBS   #  为主机链接时使用libs HLIBS</span><br><span class="line">  --host-os=OS             #  编译器主机操作系统 []</span><br><span class="line">  --extra-cflags=ECFLAGS   #  向CFLAGS添加ECFLAGS []</span><br><span class="line">  --extra-cxxflags=ECFLAGS #  将ECFLAGS添加到cxflags []</span><br><span class="line">  --extra-objcflags=FLAGS  #  向OBJCFLAGS添加标志 []</span><br><span class="line">  --extra-ldflags=ELDFLAGS #  将ELDFLAGS添加到LDFLAGS []</span><br><span class="line">  --extra-ldexeflags=ELDFLAGS #  将ELDFLAGS添加到LDEXEFLAGS []</span><br><span class="line">  --extra-ldsoflags=ELDFLAGS #  向LDSOFLAGS添加ELDFLAGS []</span><br><span class="line">  --extra-libs=ELIBS       #  添加ELIBS []</span><br><span class="line">  --extra-version=STRING   #  版本字符串后缀 []</span><br><span class="line">  --optflags=OPTFLAGS      #  重写与优化相关的编译器标志</span><br><span class="line">  --nvccflags=NVCCFLAGS    #  覆盖nvcc标志 []</span><br><span class="line">  --build-suffix=SUFFIX    #  库名称后缀 []</span><br><span class="line">  --enable-pic             #  构建位置独立代码</span><br><span class="line">  --enable-thumb           #  为Thumb指令集编译</span><br><span class="line">  --enable-lto             #  使用链接时间优化</span><br><span class="line">  --env=&quot;ENV=override&quot;     #  重写环境变量</span><br><span class="line"></span><br><span class="line">Advanced options (experts only): # 高级选项（仅限专家）：</span><br><span class="line">  --malloc-prefix=PREFIX   #  为malloc和相关名称加前缀</span><br><span class="line">  --custom-allocator=NAME  #  使用支持的自定义分配器</span><br><span class="line">  --disable-symver         #  禁用符号版本控制</span><br><span class="line">  --enable-hardcoded-tables #  使用硬编码表而不是运行时生成</span><br><span class="line">  --disable-safe-bitstream-reader #  禁用位读取器中的缓冲区边界检查（速度更快，但可能会崩溃）</span><br><span class="line">  --sws-max-filter-size=N  #  swscale使用的最大过滤器大小 [256]</span><br><span class="line"></span><br><span class="line">Optimization options (experts only): # 优化选项（仅限专家）：</span><br><span class="line">  --disable-asm            #  禁用所有程序集优化</span><br><span class="line">  --disable-altivec        #  禁用AltiVec优化</span><br><span class="line">  --disable-vsx            #  禁用VSX优化</span><br><span class="line">  --disable-power8         #  禁用POWER8优化</span><br><span class="line">  --disable-amd3dnow       #  禁用3DNow！优化</span><br><span class="line">  --disable-amd3dnowext    #  禁用3DNow！扩展优化</span><br><span class="line">  --disable-mmx            #  禁用MMX优化</span><br><span class="line">  --disable-mmxext         #  禁用MMXEXT优化</span><br><span class="line">  --disable-sse            #  禁用SSE优化</span><br><span class="line">  --disable-sse2           #  禁用SSE2优化</span><br><span class="line">  --disable-sse3           #  禁用SSE3优化</span><br><span class="line">  --disable-ssse3          #  禁用SSSE3优化</span><br><span class="line">  --disable-sse4           #  禁用SSE4优化</span><br><span class="line">  --disable-sse42          #  禁用SSE4.2优化</span><br><span class="line">  --disable-avx            #  禁用AVX优化</span><br><span class="line">  --disable-xop            #  禁用XOP优化</span><br><span class="line">  --disable-fma3           #  禁用FMA3优化</span><br><span class="line">  --disable-fma4           #  禁用FMA3优化</span><br><span class="line">  --disable-avx2           #  禁用AVX2优化</span><br><span class="line">  --disable-avx512         #  禁用AVX-512优化</span><br><span class="line">  --disable-aesni          #  禁用AESNI优化</span><br><span class="line">  --disable-armv5te        #  禁用armv5te优化</span><br><span class="line">  --disable-armv6          #  禁用armv6优化</span><br><span class="line">  --disable-armv6t2        #  禁用armv6t2优化</span><br><span class="line">  --disable-vfp            #  禁用VFP优化</span><br><span class="line">  --disable-neon           #  禁用NEON优化</span><br><span class="line">  --disable-inline-asm     #  禁止使用内联程序集</span><br><span class="line">  --disable-x86asm         #  禁用独立x86程序集</span><br><span class="line">  --disable-mipsdsp        #  禁用MIPS DSP ASE R1优化</span><br><span class="line">  --disable-mipsdspr2      #  禁用MIPS DSP ASE R2优化</span><br><span class="line">  --disable-msa            #  禁用MSA优化</span><br><span class="line">  --disable-mipsfpu        #  禁用浮点MIPS优化</span><br><span class="line">  --disable-mmi            #  禁用龙芯SIMD优化</span><br><span class="line">  --disable-fast-unaligned #  考虑不对齐的访问慢</span><br><span class="line"></span><br><span class="line">Developer options (useful when working on FFmpeg itself): # 开发人员选项（在处理FFmpeg本身时很有用）：</span><br><span class="line">  --disable-debug          #  禁用调试符号</span><br><span class="line">  --enable-debug=LEVEL     #  设置调试级别 []</span><br><span class="line">  --disable-optimizations  #  禁用编译器优化</span><br><span class="line">  --enable-extra-warnings  #  启用更多编译器警告</span><br><span class="line">  --disable-stripping      #  禁用可执行文件和共享库的剥离</span><br><span class="line">  --assert-level=level     #  0（默认），1或2，断言测试量，2导致运行时减速。</span><br><span class="line">  --enable-memory-poisoning #  用任意数据填充堆未初始化的分配空间</span><br><span class="line">  --valgrind=VALGRIND      #  通过valgrind运行“makefate”测试，使用指定的valgrind二进制文件检测内存泄漏和错误。不能与 --target exec组合</span><br><span class="line">  --enable-ftrapv          #  陷阱算术溢出</span><br><span class="line">  --samples=PATH           #  命运测试样本的位置，如果未设置，则在make调用时使用$FATE\u samples。</span><br><span class="line">  --enable-neon-clobber-test #  检查霓虹灯寄存器是否有阻塞（应仅用于调试目的）</span><br><span class="line">  --enable-xmm-clobber-test #  检查XMM寄存器的阻塞（仅限于Win64；应仅用于调试目的）</span><br><span class="line">  --enable-random          #  随机启用/禁用组件</span><br><span class="line">  --disable-random</span><br><span class="line">  --enable-random=LIST     #  随机启用/禁用特定组件</span><br><span class="line">  --disable-random=LIST    #  组件组。LIST是以逗号分隔的NAME[：PROB]条目列表，其中NAME是一个组件（组），PROB是与NAME关联的概率（默认值为0.5）。</span><br><span class="line">  --random-seed=VALUE      #  种子值--启用/禁用随机</span><br><span class="line">  --disable-valgrind-backtrace #  不要在Valgrind下打印回溯（仅适用于--disable optimizations builds）</span><br><span class="line">  --enable-ossfuzz         #  启用building fuzzer工具</span><br><span class="line">  --libfuzzer=PATH         #  libfuzzer的路径</span><br><span class="line">  --ignore-tests=TESTS     #  忽略结果的测试的逗号分隔列表（名称中没有“fate-”前缀）</span><br><span class="line">  --enable-linux-perf      #  启用Linux性能监视器API—禁用大型测试禁用使用大量内存的测试</span><br><span class="line">  --disable-ptx-compression #  即使可能也不要压缩CUDA PTX代码</span><br><span class="line"></span><br><span class="line">注意：对象文件是在启动configure的地方生成的。</span><br></pre>
+  </div>
+  <div>
+    
+      <div 
+        class="post-note note-warning copyright" 
+        style="margin-top: 42px">
+        <p>
+          <span style="font-weight: bold;">作者：</span><a 
+            target="_blank" 
+            rel="nofollow noopener noreferrer" 
+            href="/about">
+            夜楼
+          </a>
+        </p>
+        <p>
+          <span style="font-weight: bold;">文章链接：</span><a 
+            target="_blank" 
+            rel="nofollow noopener noreferrer" 
+            href="https://parischerryblossoms.github.io/2021/07/08/ffmpeg-configure-help/">
+            https://parischerryblossoms.github.io/2021/07/08/ffmpeg-configure-help/
+          </a>
+        </p>
+        <p><span style="font-weight: bold;">版权声明：</span>本博客所有文章除特别声明外，均采用<a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">CC BY-NC-SA 4.0 协议</a>。转载请注明出处！</p>
+      </div>
+    
+  </div>
+</article>
+<div class="nav">
+  
+  
+    <div class="nav-item-next">
+      <a 
+        href="/2021/07/04/plant-breeding-manual/" 
+        class="nav-link">
+        <div>
+          <div class="nav-label">下一篇</div>
+          
+            <div class="nav-title">植物育种手册 </div>
+          
+        </div>
+        <i class="iconfont icon-right nav-next-icon"></i>
+      </a>
+    </div>
+  
+</div>
+
+<div 
+  class="card card-content toc-card" 
+  id="mobiletoc">
+  <div class="toc-header">
+  <i 
+    class="iconfont icon-menu" 
+    style="padding-right: 2px;">
+  </i>目录
+</div>
+
+</div></main>
+            <aside class="left-column">
+              
+              <div class="card card-author">
+                
+  <img 
+    src="/img/logo.jpg" 
+    class="author-img" 
+    alt="author avatar">
+
+<p class="author-name">夜楼</p>
+<p class="author-description">计算机相关学习笔记</p>
+<div class="author-message">
+  <a 
+    class="author-posts-count" 
+    href="/archives">
+    <span>11</span>
+    <span>文章</span>
+  </a>
+  <a 
+    class="author-categories-count" 
+    href="/categories">
+    <span>5</span>
+    <span>分类</span>
+  </a>
+  <a 
+    class="author-tags-count" 
+    href="/tags">
+    <span>7</span>
+    <span>标签</span>
+  </a>
+</div>
+
+  <div class="author-card-society">
+    
+      <div class="author-card-society-icon">
+        <a target="_blank" rel="noopener" href="https://xxx">
+          <i class="iconfont iconfont icon-qq-fill-round society-icon"></i>
+        </a>
+      </div>
+    
+      <div class="author-card-society-icon">
+        <a target="_blank" rel="noopener" href="https://xxx">
+          <i class="iconfont iconfont icon-wechat-fill-round society-icon"></i>
+        </a>
+      </div>
+    
+      <div class="author-card-society-icon">
+        <a target="_blank" rel="noopener" href="https://xxx">
+          <i class="iconfont iconfont icon-gitee-fill-round society-icon"></i>
+        </a>
+      </div>
+    
+      <div class="author-card-society-icon">
+        <a target="_blank" rel="noopener" href="https://xxx">
+          <i class="iconfont iconfont icon-github-fill-round society-icon"></i>
+        </a>
+      </div>
+    
+      <div class="author-card-society-icon">
+        <a target="_blank" rel="noopener" href="https://xxx">
+          <i class="iconfont iconfont icon-codepen-fill-round society-icon"></i>
+        </a>
+      </div>
+    
+  </div>
+
+              </div>
+               <div class="sticky-tablet">
+  
+  
+    <article class="display-when-two-columns spacer">
+      <div class="card card-content toc-card">
+        <div class="toc-header">
+  <i 
+    class="iconfont icon-menu" 
+    style="padding-right: 2px;">
+  </i>目录
+</div>
+
+      </div>
+    </article>
+  
+  
+  <article class="card card-content categories-widget">
+    <div class="categories-card">
+  <div class="categories-header">
+    <i 
+      class="iconfont icon-fenlei" 
+      style="padding-right: 2px;">
+    </i>分类
+  </div>
+  <div class="categories-list">
+    
+      <a href="/categories/blog%E6%90%AD%E5%BB%BA/">
+        <div class="categories-list-item">
+          blog搭建
+          <span class="categories-list-item-badge">1</span>
+        </div>
+      </a>
+    
+      <a href="/categories/%E6%96%B0%E7%89%88%E6%A0%87%E5%87%86%E6%97%A5%E6%9C%AC%E8%AF%AD%E5%88%9D%E7%BA%A7/">
+        <div class="categories-list-item">
+          新版标准日本语初级
+          <span class="categories-list-item-badge">1</span>
+        </div>
+      </a>
+    
+      <a href="/categories/%E6%97%A5%E8%AF%AD%E7%94%9F%E8%AF%8D%E8%A1%A8/">
+        <div class="categories-list-item">
+          日语生词表
+          <span class="categories-list-item-badge">6</span>
+        </div>
+      </a>
+    
+      <a href="/categories/%E6%A4%8D%E7%89%A9%E8%82%B2%E7%A7%8D%E6%89%8B%E5%86%8C/">
+        <div class="categories-list-item">
+          植物育种手册
+          <span class="categories-list-item-badge">1</span>
+        </div>
+      </a>
+    
+      <a href="/categories/%E6%B5%81%E5%AA%92%E4%BD%93/">
+        <div class="categories-list-item">
+          流媒体
+          <span class="categories-list-item-badge">2</span>
+        </div>
+      </a>
+    
+  </div>
+</div>
+  </article>
+  
+  <article class="card card-content tags-widget">
+    <div class="tags-card">
+  <div class="tags-header">
+    <i 
+      class="iconfont icon-biaoqian" 
+      style="padding-right: 2px;">
+    </i>热门标签
+  </div>
+  <div class="tags-list">
+    
+      <a 
+        href="/tags/hexo/" 
+        title="hexo">
+        <div class="tags-list-item">hexo</div>
+      </a>
+    
+      <a 
+        href="/tags/kaze/" 
+        title="kaze">
+        <div class="tags-list-item">kaze</div>
+      </a>
+    
+      <a 
+        href="/tags/jp-study/" 
+        title="jp-study">
+        <div class="tags-list-item">jp-study</div>
+      </a>
+    
+      <a 
+        href="/tags/jp-word/" 
+        title="jp-word">
+        <div class="tags-list-item">jp-word</div>
+      </a>
+    
+      <a 
+        href="/tags/nginx/" 
+        title="nginx">
+        <div class="tags-list-item">nginx</div>
+      </a>
+    
+      <a 
+        href="/tags/ffmpeg/" 
+        title="ffmpeg">
+        <div class="tags-list-item">ffmpeg</div>
+      </a>
+    
+      <a 
+        href="/tags/plant/" 
+        title="plant">
+        <div class="tags-list-item">plant</div>
+      </a>
+    
+  </div>
+</div>
+  </article>
+  
+  
+</div>
+            </aside>
+            <aside class="right-column">
+              <div class="sticky-widescreen">
+  
+  
+    <article class="card card-content toc-card">
+      <div class="toc-header">
+  <i 
+    class="iconfont icon-menu" 
+    style="padding-right: 2px;">
+  </i>目录
+</div>
+
+    </article>
+  
+  
+  <article class="card card-content">
+    <div class="recent-posts-card">
+  <div class="recent-posts-header">
+    <i 
+      class="iconfont icon-wenzhang_huaban" 
+      style="padding-right: 2px;">
+    </i>最近文章
+  </div>
+  <div class="recent-posts-list">
+    
+      <div class="recent-posts-item">
+        <div class="recent-posts-item-title">2021-07-08</div>
+        <a href="/2021/07/08/ffmpeg-configure-help/"><div class="recent-posts-item-content">ffmpeg-编译帮助【翻译】</div></a>
+      </div>
+    
+      <div class="recent-posts-item">
+        <div class="recent-posts-item-title">2021-07-04</div>
+        <a href="/2021/07/04/plant-breeding-manual/"><div class="recent-posts-item-content">植物育种手册</div></a>
+      </div>
+    
+      <div class="recent-posts-item">
+        <div class="recent-posts-item-title">2021-07-03</div>
+        <a href="/2021/07/03/jp-word-%E7%9F%AD%E8%AF%AD/"><div class="recent-posts-item-content">生词表【短语】</div></a>
+      </div>
+    
+      <div class="recent-posts-item">
+        <div class="recent-posts-item-title">2021-07-03</div>
+        <a href="/2021/07/03/jp-word-%E4%B8%93/"><div class="recent-posts-item-content">生词表【专】</div></a>
+      </div>
+    
+  </div>
+</div>
+  </article>
+  
+  
+</div>
+            </aside>
+          </div>
+        </div>
+      </div>
+    </div>
+     
+    <footer class="footer">
+  <div class="footer-container">
+    <div>
+      <div class="footer-dsc">
+        <span>
+          Copyright ©
+          
+            2021 -
+          
+          2021
+        </span>
+        &nbsp;
+        <a 
+          href="/" 
+          class="footer-link">
+          码农充电站
+        </a>
+      </div>
+    </div>
+
+    
+    
+    
+    
+      <div class="footer-dsc">
+        
+          本站总访问量<span id="busuanzi_value_site_pv"></span>次
+        
+        
+          <span>&nbsp;|&nbsp;</span>
+        
+        
+          本站总访客数<span id="busuanzi_value_site_uv"></span>次
+        
+      </div>
+      
+    
+</footer> 
+    
+  <a 
+    role="button" 
+    id="scrollbutton" 
+    class="basebutton" 
+    aria-label="回到顶部">
+    <i class="iconfont icon-arrowleft button-icon"></i>
+  </a>
+
+<a 
+  role="button" 
+  id="menubutton" 
+  class="basebutton">
+  <i class="iconfont icon-menu button-icon"></i>
+</a>
+<a 
+  role="button" 
+  id="popbutton" 
+  class="basebutton" 
+  aria-label="控制中心">
+  <i class="iconfont icon-expand button-icon"></i>
+</a>
+<a 
+  role="button" 
+  id="darkbutton" 
+  class="basebutton darkwidget" 
+  aria-label="夜色模式">
+  <i class="iconfont icon-weather button-icon"></i>
+</a>
+<a 
+  role="button" 
+  id="searchbutton" 
+  class="basebutton searchwidget" 
+  aria-label="搜索">
+  <i class="iconfont icon-search button-icon"></i>
+</a> 
+     
+     
+     
+      <script>
+  var addImgLayout = function () {
+    var img = document.querySelectorAll('.post-content img')
+    var i
+    for (i = 0; i < img.length; i++) {
+      var wrapper = document.createElement('a')
+      wrapper.setAttribute('href', img[i].getAttribute('data-src'))
+      wrapper.setAttribute('aria-label', 'illustration')
+      wrapper.style.cssText =
+        'width: 100%; display: flex; justify-content: center;'
+      if (img[i].alt) wrapper.dataset.caption = img[i].alt
+      wrapper.dataset.nolink = true
+      img[i].before(wrapper)
+      wrapper.append(img[i])
+      var divWrap = document.createElement('div')
+      divWrap.classList.add('gallery')
+      wrapper.before(divWrap)
+      divWrap.append(wrapper)
+    }
+    baguetteBox.run('.gallery')
+  }
+</script>
+<script>
+  loadScript(
+    "/js/lib/lightbox/baguetteBox.min.js",
+    addImgLayout
+  )
+</script>
+ 
+     
+     
+    <script src="/js/main.js"></script> 
+    
+      <script> 
+        loadScript('/js/lib/busuanzi.min.js') 
+      </script>
+     
+    
+      <script>
+        var addLazyload = function () {
+          var observer = lozad('.lozad', {
+            load: function (el) {
+              el.srcset = el.getAttribute('data-src')
+            },
+            loaded: function (el) {
+              el.classList.add('loaded')
+            },
+          })
+          observer.observe()
+        }
+      </script>
+      <script>
+        loadScript('/js/lib/lozad.min.js', addLazyload)
+      </script>
+     
+    
+    
+  </body>
+</html>
